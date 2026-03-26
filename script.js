@@ -203,19 +203,19 @@ function initNavHighlight() {
 
   const sections = sectionIds.map(id => document.getElementById(id));
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          navLinks.forEach(a => {
-            a.classList.toggle('active', a.getAttribute('href') === `#${id}`);
-          });
-        }
-      });
-    },
-    { threshold: 0.5 }
-  );
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        document.querySelectorAll('.nav-links a, .nav-panel a').forEach(a => {
+          a.classList.toggle('active', a.getAttribute('href') === `#${id}`);
+        });
+      }
+    });
+  }, {
+    rootMargin: '-20% 0px -70% 0px',
+    threshold: 0
+  });
 
   sections.forEach(section => {
     if (section) observer.observe(section);
@@ -232,12 +232,14 @@ function initMobileNav() {
 
   function openNav() {
     hamburger.setAttribute('aria-expanded', 'true');
+    panel.setAttribute('aria-hidden', 'false');
     panel.classList.add('panel-open');
     document.body.style.overflow = 'hidden';
   }
 
   function closeNav() {
     hamburger.setAttribute('aria-expanded', 'false');
+    panel.setAttribute('aria-hidden', 'true');
     panel.classList.remove('panel-open');
     document.body.style.overflow = '';
   }
