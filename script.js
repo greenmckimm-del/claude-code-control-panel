@@ -10,7 +10,7 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
    1. Scroll Animations (Intersection Observer)
    ---------------------------------------------------------- */
 function initScrollAnimations() {
-  const elements = document.querySelectorAll('[data-animate], .flow-steps');
+  const elements = document.querySelectorAll('[data-animate], .flow-steps, .agent-diagram');
   if (!elements.length) return;
 
   if (prefersReducedMotion) {
@@ -336,7 +336,21 @@ function initExpandableCards() {
 }
 
 /* ----------------------------------------------------------
-   10. Hero Terminal
+   10. Skill Categories (Accordion)
+   ---------------------------------------------------------- */
+function initSkillCategories() {
+  document.querySelectorAll('.skill-category-header').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const category = btn.closest('.skill-category');
+      const isOpen = category.classList.contains('open');
+      category.classList.toggle('open', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+}
+
+/* ----------------------------------------------------------
+   11. Hero Terminal
    ---------------------------------------------------------- */
 function initHeroTerminal() {
   const promptEl = document.getElementById('terminal-prompt');
@@ -397,7 +411,7 @@ function initHeroTerminal() {
 }
 
 /* ----------------------------------------------------------
-   11. DOMContentLoaded — Init Everything
+   12. DOMContentLoaded — Init Everything
    ---------------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimations();
@@ -407,5 +421,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();
   initSmoothScroll();
   initExpandableCards();
+  initSkillCategories();
   initHeroTerminal();
 });
