@@ -1631,6 +1631,13 @@ code:not(.code-block code) {
   margin-bottom: 2rem;
 }
 
+@media (max-width: 600px) {
+  .footer-links {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
 .footer-btn-primary {
   background: #fff;
   color: var(--indigo);
