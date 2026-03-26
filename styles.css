@@ -20,6 +20,7 @@
   --emerald-light: #ecfdf5;
   --amber: #f59e0b;
   --amber-light: #fffbeb;
+  --amber-light-2: #fff7e6;
   --rose: #f43f5e;
   --rose-light: #fff1f2;
   --violet: #8b5cf6;
@@ -1369,7 +1370,7 @@ code:not(.code-block code) {
 
 /* ── Second Brain Section ── */
 .section-highlight {
-  background: linear-gradient(135deg, #fffbeb 0%, #fff7e6 100%);
+  background: linear-gradient(135deg, var(--amber-light) 0%, var(--amber-light-2) 100%);
   border-radius: 24px;
   margin: 2rem auto;
   padding: 3rem 2rem;
