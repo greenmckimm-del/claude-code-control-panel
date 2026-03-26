@@ -117,7 +117,6 @@
           <style>
             .flow-line { stroke: #cbd5e1; stroke-width: 2; fill: none; stroke-dasharray: 8 6; animation: flow-dash 1.5s linear infinite; }
             .flow-line-active { stroke: #6366f1; }
-            @keyframes flow-dash { to { stroke-dashoffset: -28; } }
             .arch-node { transition: filter 0.2s; cursor: pointer; }
             .arch-node:hover { filter: drop-shadow(0 0 12px rgba(99,102,241,0.4)); }
             .node-rect { fill: white; stroke: #e2e8f0; stroke-width: 1.5; rx: 12; }
@@ -197,17 +196,17 @@
       </svg>
 
       <!-- Mobile fallback: vertical stack -->
-      <div class="arch-mobile" aria-hidden="true">
+      <div class="arch-mobile">
         <a href="#hero" class="arch-mobile-node">⌨️ <span>You Type</span></a>
-        <div class="arch-mobile-arrow">↓</div>
+        <div class="arch-mobile-arrow" aria-hidden="true">↓</div>
         <a href="#context" class="arch-mobile-node">📄 <span>Context Engine <em>3 layers</em></span></a>
-        <div class="arch-mobile-arrow">↓</div>
+        <div class="arch-mobile-arrow" aria-hidden="true">↓</div>
         <a href="#brain" class="arch-mobile-node arch-mobile-featured">🧠 <span>Claude Brain <em>Opus 4.6</em></span></a>
-        <div class="arch-mobile-arrow">↓</div>
+        <div class="arch-mobile-arrow" aria-hidden="true">↓</div>
         <a href="#skills" class="arch-mobile-node">⚡ <span>Execution Layer <em>91 tools</em></span></a>
-        <div class="arch-mobile-arrow">↓</div>
+        <div class="arch-mobile-arrow" aria-hidden="true">↓</div>
         <a href="#integrations" class="arch-mobile-node">🌐 <span>External Services <em>8 MCP</em></span></a>
-        <div class="arch-mobile-arrow">↓</div>
+        <div class="arch-mobile-arrow" aria-hidden="true">↓</div>
         <a href="#outputs" class="arch-mobile-node">🚀 <span>Outputs <em>3 lanes</em></span></a>
       </div>
     </div>
