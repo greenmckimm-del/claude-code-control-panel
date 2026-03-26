@@ -340,11 +340,14 @@ function initExpandableCards() {
    ---------------------------------------------------------- */
 function initSkillCategories() {
   document.querySelectorAll('.skill-category-header').forEach(btn => {
+    const category = btn.closest('.skill-category');
+    const isOpen = category && category.classList.contains('open');
+    btn.setAttribute('aria-expanded', String(!!isOpen));
+
     btn.addEventListener('click', () => {
-      const category = btn.closest('.skill-category');
-      const isOpen = category.classList.contains('open');
-      category.classList.toggle('open', !isOpen);
-      btn.setAttribute('aria-expanded', String(!isOpen));
+      const nowOpen = category.classList.contains('open');
+      category.classList.toggle('open', !nowOpen);
+      btn.setAttribute('aria-expanded', String(!nowOpen));
     });
   });
 }

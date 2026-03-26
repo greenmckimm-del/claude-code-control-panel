@@ -94,6 +94,12 @@ ol {
   list-style: none;
 }
 
+/* --- Global Focus Visible --- */
+:focus-visible {
+  outline: 2px solid var(--indigo);
+  outline-offset: 2px;
+}
+
 /* --- Typography Scale --- */
 h1 {
   font-size: 56px;
@@ -757,6 +763,7 @@ pre,
   line-height: 1.8;
   color: var(--text-dark-2);
   min-height: 200px;
+  overflow-x: auto;
 }
 
 .terminal-prompt {
@@ -1167,6 +1174,7 @@ code:not(.code-block code) {
   transition: background 0.15s;
 }
 .skill-category-header:hover { background: var(--surface-2); }
+.skill-category-header:focus-visible { outline: 2px solid var(--indigo); outline-offset: -2px; }
 .skill-category-icon { font-size: 20px; flex-shrink: 0; }
 .skill-category-name { flex: 1; }
 .skill-category-count {
