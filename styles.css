@@ -904,6 +904,22 @@ code:not(.code-block code) {
   pointer-events: none;
 }
 
+/* Gradient mask: hero bg colour at top fades to transparent ~55% down,
+   so text stays readable while mountains show at the bottom */
+.mountain-canvas::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    #f8fafc 0%,
+    #f8fafc 25%,
+    rgba(248,250,252,0.85) 45%,
+    rgba(248,250,252,0) 70%
+  );
+  pointer-events: none;
+}
+
 .mountain-canvas canvas {
   display: block;
   width: 100% !important;
