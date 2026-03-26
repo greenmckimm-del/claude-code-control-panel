@@ -894,6 +894,22 @@ code:not(.code-block code) {
 }
 
 /* ─── Hero ─────────────────────────────────────────── */
+/* Mountain canvas — absolute behind all hero content */
+.mountain-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.mountain-canvas canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
 .hero {
   min-height: 100vh;
   display: flex;
