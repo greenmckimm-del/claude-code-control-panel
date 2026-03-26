@@ -10,7 +10,7 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
    1. Scroll Animations (Intersection Observer)
    ---------------------------------------------------------- */
 function initScrollAnimations() {
-  const elements = document.querySelectorAll('[data-animate], .flow-steps, .agent-diagram');
+  const elements = document.querySelectorAll('[data-animate], .flow-steps, .agent-diagram, .file-tree');
   if (!elements.length) return;
 
   if (prefersReducedMotion) {

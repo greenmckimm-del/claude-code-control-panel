@@ -799,6 +799,243 @@
     </blockquote>
   </section>
 
+<section class="section" id="outputs">
+  <div class="section-header" data-animate>
+    <span class="section-number">06</span>
+    <h2>"It Builds Real Things"</h2>
+    <p class="section-intro">Claude Code doesn't just answer questions. It ships. Every prompt is the start of a pipeline — from raw idea to live website, sent email, or captured knowledge. Here are the three output lanes.</p>
+  </div>
+
+  <div class="output-lanes" data-animate>
+    <!-- Lane 1: Code → Websites & Apps -->
+    <div class="output-lane output-lane--code">
+      <div class="lane-header">
+        <span class="lane-icon">💻</span>
+        <h3>Code → Websites &amp; Apps</h3>
+      </div>
+      <div class="lane-flow">
+        <span class="lane-pill">Edit files</span>
+        <span class="lane-arrow">→</span>
+        <span class="lane-pill">Run tests</span>
+        <span class="lane-arrow">→</span>
+        <span class="lane-pill">Git commit</span>
+        <span class="lane-arrow">→</span>
+        <span class="lane-pill">Push</span>
+        <span class="lane-arrow">→</span>
+        <span class="lane-pill">Vercel deploys</span>
+        <span class="lane-arrow">→</span>
+        <span class="lane-pill lane-pill--final">Live site ✓</span>
+      </div>
+      <p class="lane-desc">The GreenMcKimm Family OS — a full-stack Next.js 14 app with Supabase backend. Budgets, net worth tracking, tax projections, AI insights, and a family calendar. 40+ features shipped entirely from the terminal.</p>
+    </div>
+
+    <!-- Lane 2: Actions → Real-World Effects -->
+    <div class="output-lane output-lane--actions">
+      <div class="lane-header">
+        <span class="lane-icon">⚡</span>
+        <h3>Actions → Real-World Effects</h3>
+      </div>
+      <div class="lane-flow">
+        <span class="lane-pill">Claude prompt</span>
+        <span class="lane-arrow">→</span>
+        <span class="lane-pill">MCP call</span>
+        <span class="lane-arrow">→</span>
+        <span class="lane-pill lane-pill--final">Email sent / Event created</span>
+      </div>
+      <p class="lane-desc">Non-code outputs that happen in the real world. Draft and send emails via Gmail MCP. Create calendar events. Export Canva designs. Schedule meetings. Claude acts — not just advises.</p>
+    </div>
+
+    <!-- Lane 3: Knowledge → Second Brain -->
+    <div class="output-lane output-lane--knowledge">
+      <div class="lane-header">
+        <span class="lane-icon">🧠</span>
+        <h3>Knowledge → Second Brain</h3>
+      </div>
+      <div class="lane-flow">
+        <span class="lane-pill">Decisions made</span>
+        <span class="lane-arrow">→</span>
+        <span class="lane-pill">Memory files</span>
+        <span class="lane-arrow">→</span>
+        <span class="lane-pill">Obsidian vault</span>
+        <span class="lane-arrow">→</span>
+        <span class="lane-pill lane-pill--final">Next session loads context</span>
+      </div>
+      <p class="lane-desc">Every session ends with captured knowledge. Decisions, session logs, architectural choices — all written to Obsidian and memory files. See how this works below ↓</p>
+    </div>
+  </div>
+
+  <blockquote class="real-example" data-animate>
+    <p>"I type one prompt. By the time it's done, I have a committed feature, a passing test suite, an updated Supabase schema, and a session log in Obsidian — ready for the next conversation."</p>
+  </blockquote>
+</section>
+
+<section class="section section-highlight" id="second-brain">
+  <div class="section-header" data-animate>
+    <span class="section-number">07</span>
+    <h2>"When the Conversation Ends, the Knowledge Stays"</h2>
+    <p class="section-intro">AI conversations are ephemeral — when the chat window closes, the context disappears. I solved this with a second brain. Every significant session logs to my Obsidian vault. Every architectural decision is saved to memory files. Every project has a living backlog. When Claude starts a new session — in any IDE, on any device — it picks up exactly where it left off.</p>
+  </div>
+
+  <div class="brain-layout" data-animate>
+    <!-- Animated file tree -->
+    <div class="file-tree" role="img" aria-label="File structure of Ben Green's second brain system">
+      <ul class="tree-root">
+        <li class="tree-folder" style="--tree-delay: 0s">
+          <span class="tree-icon">📁</span>
+          <span class="tree-name">~/.claude/</span>
+          <ul>
+            <li class="tree-file" style="--tree-delay: 0.1s"><span class="tree-icon">📄</span><span class="tree-name">CLAUDE.md <span class="tree-tag">global context</span></span></li>
+            <li class="tree-folder" style="--tree-delay: 0.15s">
+              <span class="tree-icon">📁</span><span class="tree-name">projects/</span>
+              <ul>
+                <li class="tree-file" style="--tree-delay: 0.2s"><span class="tree-icon">📄</span><span class="tree-name">MEMORY.md <span class="tree-tag">cross-session memory</span></span></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="tree-folder" style="--tree-delay: 0.25s">
+          <span class="tree-icon">📁</span>
+          <span class="tree-name">Claude Projects/</span>
+          <ul>
+            <li class="tree-folder" style="--tree-delay: 0.3s">
+              <span class="tree-icon">📁</span><span class="tree-name">Family OS/</span>
+              <ul>
+                <li class="tree-file" style="--tree-delay: 0.35s"><span class="tree-icon">📄</span><span class="tree-name">CLAUDE.md <span class="tree-tag">project context</span></span></li>
+                <li class="tree-file" style="--tree-delay: 0.4s"><span class="tree-icon">📄</span><span class="tree-name">BACKLOG.md <span class="tree-tag">living backlog</span></span></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="tree-folder" style="--tree-delay: 0.45s">
+          <span class="tree-icon">📁</span>
+          <span class="tree-name">Obsidian Vault/</span>
+          <ul>
+            <li class="tree-folder" style="--tree-delay: 0.5s">
+              <span class="tree-icon">📁</span><span class="tree-name">100 Projects/</span>
+              <ul>
+                <li class="tree-file" style="--tree-delay: 0.55s"><span class="tree-icon">📄</span><span class="tree-name">GreenMcKimm Family OS.md <span class="tree-tag">session logs</span></span></li>
+                <li class="tree-file" style="--tree-delay: 0.6s"><span class="tree-icon">📄</span><span class="tree-name">The Control Panel.md <span class="tree-tag">this site!</span></span></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Continuity flow -->
+    <div class="continuity-flow">
+      <p class="continuity-label">Cross-session continuity</p>
+      <div class="continuity-steps">
+        <div class="con-step">
+          <span class="con-icon">💬</span>
+          <span class="con-text">Claude session</span>
+        </div>
+        <span class="con-arrow">→</span>
+        <div class="con-step">
+          <span class="con-icon">📝</span>
+          <span class="con-text">Obsidian log</span>
+        </div>
+        <span class="con-arrow">→</span>
+        <div class="con-step con-step--close">
+          <span class="con-icon">🔒</span>
+          <span class="con-text">Session ends</span>
+        </div>
+        <span class="con-arrow">→</span>
+        <div class="con-step">
+          <span class="con-icon">🔓</span>
+          <span class="con-text">New IDE / device</span>
+        </div>
+        <span class="con-arrow">→</span>
+        <div class="con-step">
+          <span class="con-icon">🧠</span>
+          <span class="con-text">Claude reads logs</span>
+        </div>
+        <span class="con-arrow">→</span>
+        <div class="con-step con-step--success">
+          <span class="con-icon">✓</span>
+          <span class="con-text">Full context restored</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <blockquote class="real-example" data-animate>
+    <p>"I started a feature in VS Code, continued it from the terminal on my laptop, and finished it on Claude.ai web. Each time, Claude read the Obsidian session log and knew exactly what had been done and what was left."</p>
+  </blockquote>
+</section>
+
+<section class="section" id="projects">
+  <div class="section-header" data-animate>
+    <span class="section-number">08</span>
+    <h2>"Here's What I've Actually Built"</h2>
+    <p class="section-intro">These aren't side projects I started and abandoned. They're living systems — actively maintained, regularly updated, and genuinely used every day to run my family and professional life.</p>
+  </div>
+
+  <div class="projects-grid" data-animate>
+    <div class="project-card project-card--indigo">
+      <div class="project-emoji">🏠</div>
+      <h3 class="project-title">GreenMcKimm Family OS</h3>
+      <p class="project-subtitle">Full-stack household finance + family dashboard</p>
+      <p class="project-desc">Next.js 14, Supabase, Vercel. Real-time budgets, net worth tracking, tax projections, AI-generated financial insights, Google Calendar integration. 40+ features shipped entirely from the terminal.</p>
+      <div class="project-tags">
+        <span class="project-tag">Next.js 14</span>
+        <span class="project-tag">Supabase</span>
+        <span class="project-tag">TypeScript</span>
+        <span class="project-tag">AI Insights</span>
+      </div>
+    </div>
+
+    <div class="project-card project-card--violet">
+      <div class="project-emoji">🔬</div>
+      <h3 class="project-title">muru-D Labs — AI × Telco</h3>
+      <p class="project-subtitle">White paper on AI agents + programmable connectivity</p>
+      <p class="project-desc">50-source NotebookLM research notebook, white paper, and presentation deck on how AI agents will reshape telecommunications via CAMARA APIs and MCP servers.</p>
+      <div class="project-tags">
+        <span class="project-tag">NotebookLM</span>
+        <span class="project-tag">CAMARA APIs</span>
+        <span class="project-tag">MCP</span>
+        <span class="project-tag">Strategy</span>
+      </div>
+    </div>
+
+    <div class="project-card project-card--cyan">
+      <div class="project-emoji">💼</div>
+      <h3 class="project-title">Personal Brand OS</h3>
+      <p class="project-subtitle">LinkedIn content strategy &amp; execution system</p>
+      <p class="project-desc">5-pillar content framework, 90-day playbook, and AI-assisted post drafting — all while navigating Telstra's guardrails as a corporate executive. Consistent, authentic voice at scale.</p>
+      <div class="project-tags">
+        <span class="project-tag">Content Strategy</span>
+        <span class="project-tag">LinkedIn</span>
+        <span class="project-tag">5-Pillar Framework</span>
+      </div>
+    </div>
+
+    <div class="project-card project-card--emerald">
+      <div class="project-emoji">🏡</div>
+      <h3 class="project-title">Property &amp; Household</h3>
+      <p class="project-subtitle">Home admin automation</p>
+      <p class="project-desc">Council info (Manningham City Council), bin night reminders, rates tracking, property decisions, home maintenance schedules. The boring admin of life — fully delegated to Claude.</p>
+      <div class="project-tags">
+        <span class="project-tag">Admin Automation</span>
+        <span class="project-tag">Property</span>
+        <span class="project-tag">Household</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer-cta" data-animate>
+  <div class="footer-inner">
+    <h2>Want to Try This Yourself?</h2>
+    <p class="footer-desc">Claude Code is available now. Load a CLAUDE.md, connect your tools, and start building — from your terminal.</p>
+    <div class="footer-links">
+      <a href="https://claude.ai/download" class="btn footer-btn-primary" target="_blank" rel="noopener noreferrer">Get Claude Code</a>
+      <a href="https://www.linkedin.com/in/benrgreen/" class="btn footer-btn-secondary" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
+    </div>
+    <p class="footer-small">Built entirely with Claude Code &middot; March 2026 &middot; <a href="https://bengreen.dev" class="footer-link">bengreen.dev</a></p>
+  </div>
+</footer>
+
 </main>
   <script src="script.js" defer></script>
 </body>
