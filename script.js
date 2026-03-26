@@ -169,7 +169,7 @@ function typeWriter(lines, containerId, speed, callback) {
    5. Sticky Nav (show after 80% of hero height)
    ---------------------------------------------------------- */
 function initStickyNav() {
-  const nav = document.querySelector('.sticky-nav');
+  const nav = document.getElementById('sticky-nav');
   if (!nav) return;
 
   function getHeroHeight() {
@@ -179,19 +179,13 @@ function initStickyNav() {
     return hero ? hero.offsetHeight * 0.8 : 400;
   }
 
-  function onScroll() {
-    const scrollY = window.scrollY;
-    const threshold = getHeroHeight();
+  // Cache threshold, update on resize
+  let threshold = getHeroHeight();
+  window.addEventListener('resize', () => { threshold = getHeroHeight(); }, { passive: true });
 
-    if (scrollY > threshold) {
-      nav.classList.add('nav-visible');
-    } else {
-      nav.classList.remove('nav-visible');
-    }
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('nav-visible', window.scrollY > threshold);
+  }, { passive: true });
 }
 
 /* ----------------------------------------------------------
@@ -351,19 +345,23 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initExpandableCards();
 
-  setTimeout(() => {
-    typeWriter(
-      [
-        { type: 'prompt',   text: '$ claude "check our spending this month"' },
-        { type: 'response', text: 'Fetching PocketSmith data for June...' },
-        { type: 'response', text: 'Total spend: $6,842 · Budget: $7,200' },
-        { type: 'response', text: '✓ On track. Groceries running 12% over.' },
-        { type: 'prompt',   text: '$ claude "draft response to the school email"' },
-        { type: 'response', text: 'Draft saved to clipboard. Review and send?' },
-      ],
-      'typewriter-output',
-      38,
-      null
-    );
-  }, 500);
+  // Only start typewriter if the hero terminal exists
+  const terminalPrompt = document.getElementById('terminal-prompt');
+  if (terminalPrompt) {
+    setTimeout(() => {
+      typeWriter(
+        [
+          { type: 'prompt',   text: '$ claude "check our spending this month"' },
+          { type: 'response', text: 'Fetching PocketSmith data for June...' },
+          { type: 'response', text: 'Total spend: $6,842 · Budget: $7,200' },
+          { type: 'response', text: '✓ On track. Groceries running 12% over.' },
+          { type: 'prompt',   text: '$ claude "draft response to the school email"' },
+          { type: 'response', text: 'Draft saved to clipboard. Review and send?' },
+        ],
+        'typewriter-output',
+        38,
+        null
+      );
+    }, 500);
+  }
 });
