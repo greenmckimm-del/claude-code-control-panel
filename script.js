@@ -334,7 +334,68 @@ function initExpandableCards() {
 }
 
 /* ----------------------------------------------------------
-   10. DOMContentLoaded — Init Everything
+   10. Hero Terminal
+   ---------------------------------------------------------- */
+function initHeroTerminal() {
+  const promptEl = document.getElementById('terminal-prompt');
+  const responseEl = document.getElementById('terminal-response');
+  if (!promptEl || !responseEl) return;
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const promptText = 'fix the budget widget and run tests';
+  const responseLines = [
+    { text: '✓ Loading project context...', success: false },
+    { text: '✓ Selected skill: test-driven-development', success: false },
+    { text: '✓ Dispatching 3 agents in parallel...', success: false },
+    { text: '✓ All 42 tests passing', success: true },
+    { text: '✓ Committed and deployed to Vercel', success: true },
+  ];
+
+  if (prefersReduced) {
+    promptEl.textContent = promptText;
+    responseLines.forEach(line => {
+      const div = document.createElement('div');
+      div.className = 'response-line' + (line.success ? ' success' : '');
+      div.textContent = line.text;
+      responseEl.appendChild(div);
+    });
+    return;
+  }
+
+  let charIndex = 0;
+  const cursor = document.createElement('span');
+  cursor.className = 'terminal-cursor';
+  promptEl.appendChild(cursor);
+
+  function typeChar() {
+    if (charIndex < promptText.length) {
+      cursor.insertAdjacentText('beforebegin', promptText[charIndex]);
+      charIndex++;
+      setTimeout(typeChar, 40);
+    } else {
+      cursor.remove();
+      setTimeout(showResponseLines, 600);
+    }
+  }
+
+  let lineIndex = 0;
+  function showResponseLines() {
+    if (lineIndex >= responseLines.length) return;
+    const line = responseLines[lineIndex];
+    const div = document.createElement('div');
+    div.className = 'response-line' + (line.success ? ' success' : '');
+    div.textContent = line.text;
+    responseEl.appendChild(div);
+    lineIndex++;
+    setTimeout(showResponseLines, 350);
+  }
+
+  setTimeout(typeChar, 800);
+}
+
+/* ----------------------------------------------------------
+   11. DOMContentLoaded — Init Everything
    ---------------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimations();
@@ -344,24 +405,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileNav();
   initSmoothScroll();
   initExpandableCards();
-
-  // Only start typewriter if the hero terminal exists
-  const terminalPrompt = document.getElementById('terminal-prompt');
-  if (terminalPrompt) {
-    setTimeout(() => {
-      typeWriter(
-        [
-          { type: 'prompt',   text: '$ claude "check our spending this month"' },
-          { type: 'response', text: 'Fetching PocketSmith data for June...' },
-          { type: 'response', text: 'Total spend: $6,842 · Budget: $7,200' },
-          { type: 'response', text: '✓ On track. Groceries running 12% over.' },
-          { type: 'prompt',   text: '$ claude "draft response to the school email"' },
-          { type: 'response', text: 'Draft saved to clipboard. Review and send?' },
-        ],
-        'typewriter-output',
-        38,
-        null
-      );
-    }, 500);
-  }
+  initHeroTerminal();
 });

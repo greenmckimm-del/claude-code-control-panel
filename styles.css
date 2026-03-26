@@ -883,3 +883,134 @@ code:not(.code-block code) {
     background: rgb(248, 250, 252);
   }
 }
+
+/* ─── Hero ─────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #f8fafc 0%, #ffffff 60%, #eef2ff 100%);
+  padding: 100px 32px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle grid texture behind hero */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(99,102,241,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99,102,241,0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+.hero-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--indigo-light);
+  color: var(--indigo);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 16px;
+  border-radius: 100px;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-size: clamp(40px, 6vw, 72px);
+  font-weight: 800;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+  margin-bottom: 24px;
+  background: linear-gradient(135deg, var(--text) 0%, var(--indigo) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-size: 18px;
+  color: var(--text-2);
+  max-width: 600px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+}
+
+/* ─── Terminal (Hero) ─────────────────────────────── */
+.terminal-prompt-line {
+  color: #e2e8f0;
+  margin-bottom: 12px;
+}
+
+.terminal-prompt-line::before {
+  content: '> ';
+  color: var(--indigo);
+  font-weight: 600;
+}
+
+.terminal-response-lines .response-line {
+  color: var(--text-dark-2);
+  margin-bottom: 4px;
+}
+
+.terminal-response-lines .response-line.success {
+  color: var(--emerald);
+}
+
+/* ─── Stats Bar ─────────────────────────────────────── */
+.stats-bar {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  margin-bottom: 48px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  text-align: center;
+}
+
+/* ─── Scroll hint ────────────────────────────────────── */
+.scroll-hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-3);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  animation: bounce-down 2s ease-in-out infinite;
+  transition: color 0.2s;
+}
+.scroll-hint:hover { color: var(--indigo); }
+
+@keyframes bounce-down {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+
+@media (max-width: 768px) {
+  .hero { padding: 80px 20px 60px; }
+  .stats-bar { gap: 28px; }
+  .terminal { margin-bottom: 32px; }
+}
+
+@media (max-width: 480px) {
+  .hero-sub { font-size: 16px; }
+  .stats-bar { gap: 20px; }
+}

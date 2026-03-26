@@ -21,8 +21,85 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Navigation added in Task 2 -->
-  <!-- Sections added in Tasks 3-13 -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <nav class="sticky-nav" id="sticky-nav" aria-label="Main navigation">
+    <div class="nav-inner">
+      <span class="nav-logo">Ben Green</span>
+      <div class="nav-links" id="nav-links" role="list">
+        <a href="#context" role="listitem">Context</a>
+        <a href="#brain" role="listitem">Brain</a>
+        <a href="#skills" role="listitem">Skills</a>
+        <a href="#integrations" role="listitem">Integrations</a>
+        <a href="#agents" role="listitem">Agents</a>
+        <a href="#outputs" role="listitem">Outputs</a>
+        <a href="#projects" role="listitem">Projects</a>
+      </div>
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-panel">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <!-- Mobile slide-down panel -->
+    <div class="nav-panel" id="nav-panel" aria-hidden="true">
+      <a href="#context">Context</a>
+      <a href="#brain">Brain</a>
+      <a href="#skills">Skills</a>
+      <a href="#integrations">Integrations</a>
+      <a href="#agents">Agents</a>
+      <a href="#outputs">Outputs</a>
+      <a href="#projects">Projects</a>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <section class="hero" id="hero">
+      <div class="hero-inner">
+        <div class="hero-badge" data-animate>⚡ Personal AI Stack</div>
+        <h1 data-animate>AI Runs My Life.<br>Here's the Control Panel.</h1>
+        <p class="hero-sub" data-animate>I'm not an engineer. I'm a startup accelerator lead, a dad of two, and an investor. I use Claude Code to manage my family's finances, automate household admin, run property decisions, and ship personal projects — all from a terminal.</p>
+
+        <div class="terminal" data-animate aria-label="Animated terminal demonstration">
+          <div class="terminal-header">
+            <span class="terminal-dot" style="background:#f43f5e"></span>
+            <span class="terminal-dot" style="background:#f59e0b"></span>
+            <span class="terminal-dot" style="background:#10b981"></span>
+            <span class="terminal-title">claude-code — ~/finance-tracker</span>
+          </div>
+          <div class="terminal-body" id="terminal-body">
+            <div id="terminal-prompt" class="terminal-prompt-line"></div>
+            <div id="terminal-response" class="terminal-response-lines"></div>
+          </div>
+        </div>
+
+        <div class="stats-bar" data-animate>
+          <div class="stat">
+            <span class="stat-value" data-count="28">0</span>
+            <span class="stat-label">Plugins</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" data-count="63">0</span>
+            <span class="stat-label">Skills</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" data-count="8">0</span>
+            <span class="stat-label">Integrations</span>
+          </div>
+          <div class="stat">
+            <span class="stat-value" data-count="4">0</span>
+            <span class="stat-label">Active Projects</span>
+          </div>
+        </div>
+
+        <a href="#architecture" class="scroll-hint" aria-label="Scroll to see how it works">
+          See how it works
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+
+  <!-- Sections added in Tasks 4-13 -->
+
   <script src="script.js" defer></script>
 </body>
 </html>
