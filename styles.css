@@ -326,6 +326,7 @@ pre,
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 24px rgba(15,23,42,0.08);
   transform: translateY(-100%);
   transition: transform 0.3s ease;
 }
@@ -725,7 +726,7 @@ pre,
 }
 
 .terminal-header {
-  background: var(--surface-dark-2);
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
   padding: 12px 16px;
   display: flex;
   align-items: center;
@@ -772,10 +773,10 @@ pre,
   height: 14px;
   background: #6366f1;
   vertical-align: middle;
-  animation: blink 1s step-end infinite;
+  animation: cursor-blink 1.2s ease-in-out infinite;
 }
 
-@keyframes blink {
+@keyframes cursor-blink {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0; }
 }
@@ -906,6 +907,19 @@ code:not(.code-block code) {
     linear-gradient(rgba(99,102,241,0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(99,102,241,0.04) 1px, transparent 1px);
   background-size: 48px 48px;
+  pointer-events: none;
+}
+
+/* Gradient top border on hero */
+.hero::after {
+  content: '';
+  display: block;
+  height: 4px;
+  background: linear-gradient(90deg, var(--indigo) 0%, var(--cyan) 50%, var(--violet) 100%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   pointer-events: none;
 }
 
@@ -1142,9 +1156,9 @@ code:not(.code-block code) {
   border: 1px solid var(--border);
   border-radius: 14px;
   overflow: hidden;
-  transition: box-shadow 0.2s;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
-.skill-category:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+.skill-category:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.08); transform: translateY(-2px); }
 
 .skill-category-header {
   width: 100%; display: flex; align-items: center; gap: 10px;
@@ -1191,9 +1205,9 @@ code:not(.code-block code) {
   display: flex; align-items: flex-start; gap: 14px;
   background: white; border: 1px solid var(--border);
   border-radius: 12px; padding: 16px 18px;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
-.service-card:hover { border-color: var(--cyan); box-shadow: 0 2px 12px rgba(6,182,212,0.1); }
+.service-card:hover { border-color: var(--cyan); box-shadow: 0 8px 24px rgba(0,0,0,0.08); transform: translateY(-2px); }
 .service-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
 .service-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
 .service-desc { font-size: 13px; color: var(--text-2); line-height: 1.5; }
@@ -1230,9 +1244,9 @@ code:not(.code-block code) {
   display: flex; align-items: center; gap: 12px;
   background: white; border: 1px solid var(--border);
   border-radius: 12px; padding: 14px 18px; flex: 1;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
-.agent-card:hover { border-color: var(--indigo); box-shadow: 0 2px 12px rgba(99,102,241,0.1); }
+.agent-card:hover { border-color: var(--indigo); box-shadow: 0 8px 24px rgba(0,0,0,0.08); transform: translateY(-2px); }
 .agent-card-icon { font-size: 24px; flex-shrink: 0; }
 .agent-card-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 2px; }
 .agent-card-result { font-size: 12px; color: var(--text-3); font-style: italic; }
@@ -1677,4 +1691,18 @@ code:not(.code-block code) {
 
 .footer-link:hover {
   color: #fff;
+}
+
+/* ─── Task 14: Visual Polish ──────────────────────── */
+
+/* Alternating section backgrounds */
+.section-alt {
+  background: var(--surface-2);
+}
+
+/* Glassmorphism on arch diagram node rects */
+.arch-svg .node-rect {
+  fill: rgba(255,255,255,0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
