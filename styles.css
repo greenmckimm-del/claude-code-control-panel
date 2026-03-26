@@ -615,7 +615,7 @@ pre,
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 1.2px;
-  color: var(--text-3);
+  color: var(--text-2);
   font-weight: 600;
   margin-top: 8px;
 }
@@ -786,6 +786,220 @@ pre,
 @keyframes cursor-blink {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0; }
+}
+
+/* ─── Process Widget (Hero) ──────────────────────────── */
+.process-widget {
+  background: var(--surface-dark);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--surface-dark-2);
+  box-shadow: var(--shadow-lg), 0 0 48px rgba(99, 102, 241, 0.1);
+  margin: 32px auto 40px;
+  max-width: 620px;
+  text-align: left;
+}
+
+.process-widget-header {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.pw-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.pw-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text-3);
+  margin-left: 8px;
+}
+
+.process-widget-body {
+  padding: 22px 24px 24px;
+}
+
+.pw-prompt-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  min-height: 22px;
+}
+
+.pw-caret {
+  color: var(--indigo);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.pw-prompt-text {
+  color: #e2e8f0;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.pw-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 15px;
+  background: var(--indigo);
+  vertical-align: middle;
+  margin-left: 1px;
+  animation: cursor-blink 1.2s ease-in-out infinite;
+}
+
+.pw-pipeline {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.pw-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 10px;
+  padding: 11px 14px;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.28s ease, transform 0.28s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.pw-step.pw-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.pw-step.pw-step-success {
+  border-color: rgba(16, 185, 129, 0.3);
+  background: rgba(16, 185, 129, 0.07);
+}
+
+.pw-step-status {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.pw-step-status.pw-loading {
+  border: 2px solid rgba(99, 102, 241, 0.35);
+  border-top-color: var(--indigo);
+  animation: pw-spin 0.75s linear infinite;
+}
+
+.pw-step-status.pw-done {
+  background: var(--emerald);
+  position: relative;
+}
+
+.pw-step-status.pw-done::after {
+  content: '';
+  position: absolute;
+  width: 5px;
+  height: 9px;
+  border: 2px solid #fff;
+  border-top: none;
+  border-left: none;
+  transform: rotate(42deg) translate(-1px, -1px);
+}
+
+@keyframes pw-spin {
+  to { transform: rotate(360deg); }
+}
+
+.pw-step-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.pw-step-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.5;
+  transition: color 0.25s ease;
+}
+
+.pw-step.pw-step-resolved .pw-step-label {
+  color: #94a3b8;
+}
+
+.pw-step.pw-step-success .pw-step-label {
+  color: var(--emerald);
+  font-weight: 600;
+}
+
+.pw-agents {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+  margin-top: 10px;
+}
+
+.pw-agent {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 8px;
+  padding: 9px 10px;
+  text-align: center;
+  opacity: 0;
+  transform: scale(0.92) translateY(4px);
+  transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.pw-agent.pw-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.pw-agent-icon {
+  font-size: 15px;
+  display: block;
+  margin-bottom: 4px;
+  line-height: 1;
+}
+
+.pw-agent-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #64748b;
+  display: block;
+  margin-bottom: 3px;
+}
+
+.pw-agent-result {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--emerald);
+  font-weight: 600;
+  display: block;
+}
+
+@media (max-width: 480px) {
+  .process-widget-body { padding: 16px; }
+  .pw-agents { grid-template-columns: 1fr; gap: 5px; }
+  .pw-prompt-row { font-size: 13px; }
 }
 
 /* --- Inline code --- */
@@ -1030,13 +1244,42 @@ code:not(.code-block code) {
 .stats-bar {
   display: flex;
   justify-content: center;
-  gap: 48px;
+  gap: 40px;
   margin-bottom: 48px;
   flex-wrap: wrap;
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: var(--radius-xl);
+  padding: 24px 36px;
+  box-shadow: 0 2px 20px rgba(15, 23, 42, 0.06);
 }
 
 .stat {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.stat-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--indigo-light);
+  border-radius: 10px;
+  margin-bottom: 6px;
+  color: var(--indigo);
+}
+
+.stat-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
 }
 
 /* ─── Scroll hint ────────────────────────────────────── */
@@ -1060,13 +1303,15 @@ code:not(.code-block code) {
 
 @media (max-width: 768px) {
   .hero { padding: 80px 20px 60px; }
-  .stats-bar { gap: 28px; }
-  .terminal { margin-bottom: 32px; }
+  .stats-bar { gap: 24px; padding: 20px 24px; }
+  .process-widget { margin: 24px auto 32px; }
 }
 
 @media (max-width: 480px) {
   .hero-sub { font-size: 16px; }
-  .stats-bar { gap: 20px; }
+  .stats-bar { gap: 16px; padding: 16px 20px; }
+  .stat-icon { width: 34px; height: 34px; border-radius: 8px; }
+  .stat-icon svg { width: 17px; height: 17px; }
 }
 
 /* ─── Architecture Diagram ───────────────────────── */

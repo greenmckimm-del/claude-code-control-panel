@@ -353,64 +353,185 @@ function initSkillCategories() {
 }
 
 /* ----------------------------------------------------------
-   11. Hero Terminal
+   11. Process Widget (Hero)
    ---------------------------------------------------------- */
-function initHeroTerminal() {
-  const promptEl = document.getElementById('terminal-prompt');
-  const responseEl = document.getElementById('terminal-response');
-  if (!promptEl || !responseEl) return;
+function initProcessWidget() {
+  const widget = document.getElementById('process-widget');
+  if (!widget) return;
 
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   const promptText = 'fix the budget widget and run tests';
-  const responseLines = [
-    { text: '✓ Loading project context...', success: false },
-    { text: '✓ Selected skill: test-driven-development', success: false },
-    { text: '✓ Dispatching 3 agents in parallel...', success: false },
-    { text: '✓ All 42 tests passing', success: true },
-    { text: '✓ Committed and deployed to Vercel', success: true },
+
+  const steps = [
+    {
+      id: 'pw-s1',
+      label: 'Reading context (CLAUDE.md + BACKLOG.md)',
+      agents: null,
+      success: false,
+    },
+    {
+      id: 'pw-s2',
+      label: 'Skill selected: test-driven-development',
+      agents: null,
+      success: false,
+    },
+    {
+      id: 'pw-s3',
+      label: 'Dispatching 3 agents in parallel',
+      agents: [
+        { icon: '🔍', name: 'Explorer', result: '8 files found' },
+        { icon: '🔨', name: 'Fix Agent', result: '3 issues patched' },
+        { icon: '✅', name: 'Tests', result: '42 / 42 passing' },
+      ],
+      success: false,
+    },
+    {
+      id: 'pw-s4',
+      label: 'Committed & deployed to Vercel ✦',
+      agents: null,
+      success: true,
+    },
   ];
 
-  if (prefersReduced) {
+  function createStepEl(step) {
+    const div = document.createElement('div');
+    div.className = 'pw-step';
+    div.id = step.id;
+
+    const statusSpan = document.createElement('span');
+    statusSpan.className = 'pw-step-status';
+    div.appendChild(statusSpan);
+
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'pw-step-content';
+
+    const labelDiv = document.createElement('div');
+    labelDiv.className = 'pw-step-label';
+    labelDiv.textContent = step.label;
+    contentDiv.appendChild(labelDiv);
+
+    if (step.agents) {
+      const agentsDiv = document.createElement('div');
+      agentsDiv.className = 'pw-agents';
+      step.agents.forEach(agent => {
+        const agentDiv = document.createElement('div');
+        agentDiv.className = 'pw-agent';
+
+        const iconEl = document.createElement('span');
+        iconEl.className = 'pw-agent-icon';
+        iconEl.textContent = agent.icon;
+
+        const nameEl = document.createElement('span');
+        nameEl.className = 'pw-agent-name';
+        nameEl.textContent = agent.name;
+
+        const resultEl = document.createElement('span');
+        resultEl.className = 'pw-agent-result';
+        resultEl.textContent = agent.result;
+
+        agentDiv.append(iconEl, nameEl, resultEl);
+        agentsDiv.appendChild(agentDiv);
+      });
+      contentDiv.appendChild(agentsDiv);
+    }
+
+    div.appendChild(contentDiv);
+    return div;
+  }
+
+  function renderInstant() {
+    const promptEl = document.getElementById('pw-prompt');
+    const pipeline = document.getElementById('pw-pipeline');
+    if (!promptEl || !pipeline) return;
     promptEl.textContent = promptText;
-    responseLines.forEach(line => {
-      const div = document.createElement('div');
-      div.className = 'response-line' + (line.success ? ' success' : '');
-      div.textContent = line.text;
-      responseEl.appendChild(div);
+    pipeline.innerHTML = '';
+    steps.forEach(step => {
+      const el = createStepEl(step);
+      el.classList.add('pw-visible', 'pw-step-resolved');
+      const statusEl = el.querySelector('.pw-step-status');
+      statusEl.className = 'pw-step-status pw-done';
+      if (step.success) el.classList.add('pw-step-success');
+      if (step.agents) {
+        el.querySelectorAll('.pw-agent').forEach(a => a.classList.add('pw-visible'));
+      }
+      pipeline.appendChild(el);
     });
+  }
+
+  if (prefersReduced) {
+    renderInstant();
     return;
   }
 
-  let charIndex = 0;
-  const cursor = document.createElement('span');
-  cursor.className = 'terminal-cursor';
-  promptEl.appendChild(cursor);
+  let loopTimer = null;
 
-  function typeChar() {
-    if (charIndex < promptText.length) {
-      cursor.insertAdjacentText('beforebegin', promptText[charIndex]);
-      charIndex++;
-      setTimeout(typeChar, 40);
-    } else {
-      cursor.remove();
-      setTimeout(showResponseLines, 600);
+  function runAnimation() {
+    const promptEl = document.getElementById('pw-prompt');
+    const pipeline = document.getElementById('pw-pipeline');
+    if (!promptEl || !pipeline) return;
+
+    promptEl.innerHTML = '';
+    pipeline.innerHTML = '';
+
+    // Pre-render all steps (invisible)
+    steps.forEach(step => pipeline.appendChild(createStepEl(step)));
+
+    // Type the prompt
+    let charIdx = 0;
+    const cursor = document.createElement('span');
+    cursor.className = 'pw-cursor';
+    promptEl.appendChild(cursor);
+
+    function typeChar() {
+      if (charIdx < promptText.length) {
+        cursor.insertAdjacentText('beforebegin', promptText[charIdx++]);
+        setTimeout(typeChar, 32);
+      } else {
+        cursor.remove();
+        setTimeout(() => activateStep(0), 380);
+      }
     }
+
+    function activateStep(idx) {
+      if (idx >= steps.length) {
+        loopTimer = setTimeout(runAnimation, 3200);
+        return;
+      }
+
+      const stepEl = document.getElementById(steps[idx].id);
+      if (!stepEl) return;
+
+      // Show step with loading indicator
+      stepEl.classList.add('pw-visible');
+      const statusEl = stepEl.querySelector('.pw-step-status');
+      statusEl.className = 'pw-step-status pw-loading';
+
+      const hasAgents = !!steps[idx].agents;
+      const loadDelay = hasAgents ? 700 : 480;
+
+      setTimeout(() => {
+        // Resolve step
+        statusEl.className = 'pw-step-status pw-done';
+        stepEl.classList.add('pw-step-resolved');
+        if (steps[idx].success) stepEl.classList.add('pw-step-success');
+
+        if (hasAgents) {
+          const agentEls = stepEl.querySelectorAll('.pw-agent');
+          agentEls.forEach((el, i) => {
+            setTimeout(() => el.classList.add('pw-visible'), i * 300);
+          });
+          const agentDelay = agentEls.length * 300 + 480;
+          setTimeout(() => activateStep(idx + 1), agentDelay);
+        } else {
+          setTimeout(() => activateStep(idx + 1), 220);
+        }
+      }, loadDelay);
+    }
+
+    setTimeout(typeChar, 500);
   }
 
-  let lineIndex = 0;
-  function showResponseLines() {
-    if (lineIndex >= responseLines.length) return;
-    const line = responseLines[lineIndex];
-    const div = document.createElement('div');
-    div.className = 'response-line' + (line.success ? ' success' : '');
-    div.textContent = line.text;
-    responseEl.appendChild(div);
-    lineIndex++;
-    setTimeout(showResponseLines, 350);
-  }
-
-  setTimeout(typeChar, 800);
+  runAnimation();
 }
 
 /* ----------------------------------------------------------
@@ -425,5 +546,5 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initExpandableCards();
   initSkillCategories();
-  initHeroTerminal();
+  initProcessWidget();
 });

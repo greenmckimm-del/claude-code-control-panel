@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Runs My Life — Ben Green's Claude Code Setup</title>
+  <title>AI Helps Run My Life — Ben Green's Claude Code Stack</title>
   <meta name="description" content="How I use Claude Code to manage finances, automate admin, and ship personal projects — from a terminal.">
   <!-- Open Graph -->
-  <meta property="og:title" content="AI Runs My Life — Ben Green's Claude Code Setup">
+  <meta property="og:title" content="AI Helps Run My Life — Ben Green's Claude Code Stack">
   <meta property="og:description" content="How I use Claude Code to manage finances, automate admin, and ship personal projects — from a terminal.">
   <meta property="og:image" content="assets/og-image.png">
   <meta property="og:url" content="https://greenmckimm-del.github.io/claude-code-control-panel/">
@@ -55,36 +55,63 @@
       <div id="mountain-canvas" class="mountain-canvas" aria-hidden="true"></div>
       <div class="hero-inner">
         <div class="hero-badge" data-animate>⚡ Personal AI Stack</div>
-        <h1 data-animate>AI Runs My Life.<br>Here's the Control Panel.</h1>
+        <h1 data-animate>AI Helps Run My Life.<br>Here's the Stack.</h1>
         <p class="hero-sub" data-animate>I'm not a software engineer. I'm a Product Developer and startup accelerator lead, a dad of two, and an investor. I use Claude Code to manage my family's finances, automate household admin, run property decisions, and ship personal projects — all from a terminal.</p>
 
-        <div class="terminal" data-animate aria-label="Animated terminal demonstration">
-          <div class="terminal-header">
-            <span class="terminal-dot" style="background:#f43f5e"></span>
-            <span class="terminal-dot" style="background:#f59e0b"></span>
-            <span class="terminal-dot" style="background:#10b981"></span>
-            <span class="terminal-title">claude-code — ~/finance-tracker</span>
+        <div class="process-widget" id="process-widget" data-animate aria-label="Animated demonstration of Claude Code running a task">
+          <div class="process-widget-header">
+            <span class="pw-dot" style="background:#f43f5e"></span>
+            <span class="pw-dot" style="background:#f59e0b"></span>
+            <span class="pw-dot" style="background:#10b981"></span>
+            <span class="pw-title">claude-code — ~/finance-tracker</span>
           </div>
-          <div class="terminal-body" id="terminal-body">
-            <div id="terminal-prompt" class="terminal-prompt-line"></div>
-            <div id="terminal-response" class="terminal-response-lines"></div>
+          <div class="process-widget-body">
+            <div class="pw-prompt-row">
+              <span class="pw-caret">›</span>
+              <span class="pw-prompt-text" id="pw-prompt"></span>
+            </div>
+            <div class="pw-pipeline" id="pw-pipeline" aria-live="polite"></div>
           </div>
         </div>
 
         <div class="stats-bar" data-animate>
           <div class="stat">
+            <span class="stat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                <line x1="12" y1="22.08" x2="12" y2="12"/>
+              </svg>
+            </span>
             <span class="stat-value" data-count="28">0</span>
             <span class="stat-label">Plugins</span>
           </div>
           <div class="stat">
+            <span class="stat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+            </span>
             <span class="stat-value" data-count="63">0</span>
             <span class="stat-label">Skills</span>
           </div>
           <div class="stat">
+            <span class="stat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+              </svg>
+            </span>
             <span class="stat-value" data-count="8">0</span>
             <span class="stat-label">Integrations</span>
           </div>
           <div class="stat">
+            <span class="stat-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+                <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+              </svg>
+            </span>
             <span class="stat-value" data-count="4">0</span>
             <span class="stat-label">Active Projects</span>
           </div>
