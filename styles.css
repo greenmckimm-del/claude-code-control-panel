@@ -1,5 +1,5 @@
 /* ============================================================
-   Design System — The Control Panel
+   Design System: The Control Panel
    Ben Green's Claude Code Stack Site
    ============================================================ */
 
@@ -327,7 +327,7 @@ pre,
   left: 0;
   right: 0;
   z-index: 100;
-  /* --bg with 95% opacity — can't use rgba() with CSS custom properties directly */
+  /* --bg with 95% opacity (can't use rgba() with CSS custom properties directly) */
   background: rgba(248, 250, 252, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -1108,7 +1108,7 @@ code:not(.code-block code) {
 }
 
 /* ─── Hero ─────────────────────────────────────────── */
-/* Mountain canvas — absolute behind all hero content */
+/* Mountain canvas: absolute behind all hero content */
 .mountain-canvas {
   position: absolute;
   inset: 0;
@@ -1242,9 +1242,9 @@ code:not(.code-block code) {
 
 /* ─── Stats Bar ─────────────────────────────────────── */
 .stats-bar {
-  display: flex;
-  justify-content: space-evenly;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
   margin-bottom: 48px;
   width: 100%;
   background: rgba(255, 255, 255, 0.82);
@@ -1262,8 +1262,6 @@ code:not(.code-block code) {
   flex-direction: column;
   align-items: center;
   gap: 4px;
-  flex: 1;
-  min-width: 0;
 }
 
 .stat-icon {
@@ -1305,13 +1303,13 @@ code:not(.code-block code) {
 
 @media (max-width: 768px) {
   .hero { padding: 80px 20px 60px; }
-  .stats-bar { gap: 24px; padding: 20px 24px; }
+  .stats-bar { grid-template-columns: repeat(2, 1fr); gap: 16px; padding: 20px 24px; }
   .process-widget { margin: 24px auto 32px; }
 }
 
 @media (max-width: 480px) {
   .hero-sub { font-size: 16px; }
-  .stats-bar { gap: 16px; padding: 16px 20px; }
+  .stats-bar { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 16px 20px; }
   .stat-icon { width: 34px; height: 34px; border-radius: 8px; }
   .stat-icon svg { width: 17px; height: 17px; }
 }
@@ -1495,8 +1493,11 @@ code:not(.code-block code) {
   transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 .service-card:hover { border-color: var(--cyan); box-shadow: 0 8px 24px rgba(0,0,0,0.08); transform: translateY(-2px); }
+.service-card-featured { border-color: var(--indigo); background: var(--indigo-light); }
+.service-card-featured:hover { border-color: var(--indigo); }
 .service-icon { font-size: 24px; flex-shrink: 0; margin-top: 2px; }
-.service-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+.service-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; display: flex; align-items: center; gap: 6px; }
+.service-badge-new { font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; background: var(--indigo); color: white; border-radius: 4px; padding: 1px 6px; }
 .service-desc { font-size: 13px; color: var(--text-2); line-height: 1.5; }
 
 /* ─── Agent Diagram ───────────────────────────────── */

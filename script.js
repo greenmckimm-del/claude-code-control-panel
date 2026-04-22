@@ -1,5 +1,5 @@
 /* ============================================================
-   The Control Panel — JS Infrastructure
+   The Control Panel: JS Infrastructure
    ============================================================ */
 
 'use strict';
@@ -360,38 +360,79 @@ function initProcessWidget() {
   if (!widget) return;
 
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const promptText = 'fix the budget widget and run tests';
 
-  const steps = [
+  const scenarios = [
     {
-      id: 'pw-s1',
-      label: 'Reading context (CLAUDE.md + BACKLOG.md)',
-      agents: null,
-      success: false,
-    },
-    {
-      id: 'pw-s2',
-      label: 'Skill selected: test-driven-development',
-      agents: null,
-      success: false,
-    },
-    {
-      id: 'pw-s3',
-      label: 'Dispatching 3 agents in parallel',
-      agents: [
-        { icon: '🔍', name: 'Explorer', result: '8 files found' },
-        { icon: '🔨', name: 'Fix Agent', result: '3 issues patched' },
-        { icon: '✅', name: 'Tests', result: '42 / 42 passing' },
+      prompt: 'generate 6 brand shots for Stockworth, match Canva brand guide',
+      title: 'claude-code: ~/stockworth',
+      steps: [
+        {
+          id: 'pw-s1',
+          label: 'Reading context (CLAUDE.md + brand guide)',
+          agents: null,
+          success: false,
+        },
+        {
+          id: 'pw-s2',
+          label: 'Skill selected: brand-photography',
+          agents: null,
+          success: false,
+        },
+        {
+          id: 'pw-s3',
+          label: 'Dispatching 3 agents in parallel',
+          agents: [
+            { icon: '🎨', name: 'Canva MCP', result: 'brand tokens read' },
+            { icon: '🖼️', name: 'Nano Banana', result: '6 shots generated' },
+            { icon: '✅', name: 'Reviewer', result: '5 approved, 1 queued' },
+          ],
+          success: false,
+        },
+        {
+          id: 'pw-s4',
+          label: 'Saved to /06-assets/images + committed ✦',
+          agents: null,
+          success: true,
+        },
       ],
-      success: false,
     },
     {
-      id: 'pw-s4',
-      label: 'Committed & deployed to Vercel ✦',
-      agents: null,
-      success: true,
+      prompt: 'synthesise the 40-page industry paper for muru-D Labs',
+      title: 'claude-code: ~/muru-d-labs',
+      steps: [
+        {
+          id: 'pw-s1',
+          label: 'Routing to NotebookLM MCP server',
+          agents: null,
+          success: false,
+        },
+        {
+          id: 'pw-s2',
+          label: 'Uploading paper (40 pages, 28,000 words)',
+          agents: null,
+          success: false,
+        },
+        {
+          id: 'pw-s3',
+          label: 'Running 3 agents across document',
+          agents: [
+            { icon: '📋', name: 'Summariser', result: '6 key themes' },
+            { icon: '🎙️', name: 'Audio overview', result: '12 min podcast' },
+            { icon: '✅', name: 'Actions', result: '9 recommendations' },
+          ],
+          success: false,
+        },
+        {
+          id: 'pw-s4',
+          label: 'Summary saved to Notion + Obsidian ✦',
+          agents: null,
+          success: true,
+        },
+      ],
     },
   ];
+
+  let scenarioIdx = 0;
 
   function createStepEl(step) {
     const div = document.createElement('div');
@@ -440,12 +481,15 @@ function initProcessWidget() {
   }
 
   function renderInstant() {
+    const scenario = scenarios[0];
     const promptEl = document.getElementById('pw-prompt');
     const pipeline = document.getElementById('pw-pipeline');
+    const titleEl = widget.querySelector('.pw-title');
     if (!promptEl || !pipeline) return;
-    promptEl.textContent = promptText;
+    if (titleEl) titleEl.textContent = scenario.title;
+    promptEl.textContent = scenario.prompt;
     pipeline.innerHTML = '';
-    steps.forEach(step => {
+    scenario.steps.forEach(step => {
       const el = createStepEl(step);
       el.classList.add('pw-visible', 'pw-step-resolved');
       const statusEl = el.querySelector('.pw-step-status');
@@ -466,12 +510,20 @@ function initProcessWidget() {
   let loopTimer = null;
 
   function runAnimation() {
+    const scenario = scenarios[scenarioIdx];
+    scenarioIdx = (scenarioIdx + 1) % scenarios.length;
+
     const promptEl = document.getElementById('pw-prompt');
     const pipeline = document.getElementById('pw-pipeline');
+    const titleEl = widget.querySelector('.pw-title');
     if (!promptEl || !pipeline) return;
 
+    if (titleEl) titleEl.textContent = scenario.title;
     promptEl.innerHTML = '';
     pipeline.innerHTML = '';
+
+    const steps = scenario.steps;
+    const promptText = scenario.prompt;
 
     // Pre-render all steps (invisible)
     steps.forEach(step => pipeline.appendChild(createStepEl(step)));
@@ -535,7 +587,7 @@ function initProcessWidget() {
 }
 
 /* ----------------------------------------------------------
-   12. DOMContentLoaded — Init Everything
+   12. DOMContentLoaded: Init Everything
    ---------------------------------------------------------- */
 document.addEventListener('DOMContentLoaded', () => {
   initScrollAnimations();

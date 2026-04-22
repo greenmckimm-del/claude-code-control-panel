@@ -3,22 +3,76 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Helps Run My Life: Ben Green's Claude Code Stack</title>
-  <meta name="description" content="I set the direction. I form the vision. Claude, with its skills, agents, and connectors, is the engine that delivers.">
+  <title>Augmented Me. Ben Green's AI Stack.</title>
+  <meta name="description" content="Twenty tools. One workflow. How Ben Green uses an AI ensemble across personal life, side businesses, and family operations.">
   <!-- Open Graph -->
-  <meta property="og:title" content="AI Helps Run My Life: Ben Green's Claude Code Stack">
-  <meta property="og:description" content="I set the direction. I form the vision. Claude, with its skills, agents, and connectors, is the engine that delivers.">
+  <meta property="og:title" content="Augmented Me. Ben Green's AI Stack.">
+  <meta property="og:description" content="Twenty tools. One workflow. How Ben Green uses an AI ensemble across personal life, side businesses, and family operations.">
   <meta property="og:image" content="assets/og-image.png">
-  <meta property="og:url" content="https://greenmckimm-del.github.io/claude-code-control-panel/">
+  <meta property="og:url" content="https://augmented-me.vercel.app/">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
-  <!-- Favicon: lightning bolt emoji -->
+  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Phase 2 additions — new sections */
+    .shift-split { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2.5rem; }
+    .shift-split-panel { border: 1px solid var(--border); border-radius: 12px; padding: 2rem; background: var(--surface); }
+    .shift-split-panel.new { border-color: #6366f1; background: #eef2ff; }
+    .shift-panel-label { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #94a3b8; margin-bottom: 1rem; }
+    .shift-panel-label.new-label { color: #6366f1; }
+    .shift-panel-items { display: flex; flex-direction: column; gap: 0.5rem; }
+    .shift-panel-item { font-size: 0.875rem; color: #475569; }
+    .shift-video-wrapper { margin: 2rem 0; border-radius: 12px; overflow: hidden; background: #0f172a; aspect-ratio: 16/9; display: flex; align-items: center; justify-content: center; }
+    .shift-video-placeholder { text-align: center; color: #64748b; }
+    .shift-video-placeholder p { margin-top: 0.75rem; font-size: 0.875rem; }
+    .ensemble-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1rem; margin-top: 2rem; }
+    .ensemble-tool { border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem 1rem; background: var(--surface); text-align: center; cursor: default; transition: border-color 0.2s, box-shadow 0.2s; }
+    .ensemble-tool:hover { border-color: #6366f1; box-shadow: 0 0 0 3px rgba(99,102,241,0.1); }
+    .ensemble-tool-icon { font-size: 1.75rem; margin-bottom: 0.5rem; }
+    .ensemble-tool-name { font-size: 0.8125rem; font-weight: 600; color: #0f172a; margin-bottom: 0.25rem; }
+    .ensemble-tool-role { font-size: 0.75rem; color: #64748b; display: none; }
+    .ensemble-tool:hover .ensemble-tool-role { display: block; }
+    .ensemble-expand { text-align: center; margin-top: 1.5rem; }
+    .ensemble-expand button { background: none; border: 1px solid var(--border); border-radius: 8px; padding: 0.5rem 1.5rem; font-size: 0.875rem; color: #475569; cursor: pointer; }
+    .direct-prompt { background: #0f172a; border-radius: 10px; padding: 1.5rem; margin: 1.5rem 0; font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; color: #e2e8f0; line-height: 1.6; }
+    .direct-prompt::before { content: '›'; color: #6366f1; margin-right: 0.5rem; }
+    .direct-fanout { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 0.75rem; margin: 1.5rem 0; }
+    .fanout-node { border: 1px solid var(--border); border-radius: 8px; padding: 0.75rem 1rem; background: var(--surface); font-size: 0.8125rem; color: #475569; }
+    .fanout-node strong { display: block; font-weight: 600; color: #0f172a; margin-bottom: 0.25rem; }
+    .direct-result { font-size: 0.875rem; color: #10b981; font-weight: 600; margin-top: 0.5rem; }
+    .telstra-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .telstra-card { border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; background: var(--surface); }
+    .telstra-card-title { font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 1rem; }
+    .telstra-state { font-size: 0.8125rem; color: #64748b; margin-bottom: 0.5rem; }
+    .telstra-state strong { color: #ef4444; font-weight: 600; }
+    .telstra-state-orchestrated strong { color: #10b981; }
+    .telstra-compliance { font-size: 0.75rem; color: #94a3b8; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+    .how-to-steps { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+    .how-to-step { border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; background: var(--surface); }
+    .step-num { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #6366f1; margin-bottom: 0.5rem; }
+    .step-title { font-size: 1rem; font-weight: 700; color: #0f172a; margin-bottom: 0.5rem; }
+    .step-body { font-size: 0.875rem; color: #475569; margin-bottom: 1.25rem; }
+    .btn-step { display: inline-block; background: #6366f1; color: white; border-radius: 8px; padding: 0.625rem 1.25rem; font-size: 0.875rem; font-weight: 600; text-decoration: none; transition: background 0.2s; }
+    .btn-step:hover { background: #4f46e5; }
+    .night-timeline { margin-top: 2rem; display: flex; flex-direction: column; gap: 0; }
+    .night-event { display: grid; grid-template-columns: 6rem 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); align-items: start; }
+    .night-event:last-child { border-bottom: none; }
+    .night-time { font-family: 'JetBrains Mono', monospace; font-size: 0.8125rem; color: #6366f1; padding-top: 0.125rem; }
+    .night-event-body strong { font-weight: 600; color: #0f172a; display: block; font-size: 0.875rem; }
+    .night-event-body span { font-size: 0.8125rem; color: #64748b; }
+    @media (max-width: 640px) {
+      .shift-split { grid-template-columns: 1fr; }
+      .ensemble-grid { grid-template-columns: repeat(2, 1fr); }
+      .how-to-steps { grid-template-columns: 1fr; }
+      .telstra-cards { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -26,13 +80,14 @@
     <div class="nav-inner">
       <span class="nav-logo">Ben Green</span>
       <div class="nav-links" id="nav-links" role="list">
+        <a href="#the-shift" role="listitem">The Shift</a>
+        <a href="#ensemble" role="listitem">The Stack</a>
+        <a href="#conductor" role="listitem">Conductor</a>
         <a href="#context" role="listitem">Context</a>
-        <a href="#brain" role="listitem">Brain</a>
-        <a href="#skills" role="listitem">Skills</a>
-        <a href="#integrations" role="listitem">Integrations</a>
-        <a href="#agents" role="listitem">Agents</a>
-        <a href="#outputs" role="listitem">Outputs</a>
+        <a href="#integrations" role="listitem">Demos</a>
         <a href="#projects" role="listitem">Projects</a>
+        <a href="#telstra" role="listitem">Telstra</a>
+        <a href="#how-to-start" role="listitem">Start</a>
       </div>
       <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-panel">
         <span></span><span></span><span></span>
@@ -40,30 +95,39 @@
     </div>
     <!-- Mobile slide-down panel -->
     <div class="nav-panel" id="nav-panel" aria-hidden="true">
+      <a href="#the-shift">The Shift</a>
+      <a href="#ensemble">The Stack</a>
+      <a href="#conductor">Conductor</a>
       <a href="#context">Context</a>
-      <a href="#brain">Brain</a>
+      <a href="#direct-execute">Direct</a>
       <a href="#skills">Skills</a>
-      <a href="#integrations">Integrations</a>
-      <a href="#agents">Agents</a>
+      <a href="#integrations">Demos</a>
+      <a href="#sleep">Agents</a>
       <a href="#outputs">Outputs</a>
       <a href="#projects">Projects</a>
+      <a href="#telstra">Telstra</a>
+      <a href="#how-to-start">Start</a>
     </div>
   </nav>
 
   <main id="main-content">
+
+    <!-- ═══════════════════════════════════════════════════════
+         CHAPTER 1. HERO
+    ═══════════════════════════════════════════════════════ -->
     <section class="hero" id="hero">
       <div id="mountain-canvas" class="mountain-canvas" aria-hidden="true"></div>
       <div class="hero-inner">
-        <div class="hero-badge" data-animate>⚡ Personal AI Stack</div>
-        <h1 data-animate>AI Helps Run My Life.<br>Here's the Stack.</h1>
-        <p class="hero-sub" data-animate>I'm not a software engineer. I'm a Product Developer, startup accelerator lead, dad of two, and investor. I set the direction. I form the vision. I make the calls. Claude, with its skills, agents, and connectors, is the engine that delivers.</p>
+        <div class="hero-badge" data-animate>⚡ Augmented Me</div>
+        <h1 data-animate>Twenty tools.<br>One workflow.<br>One very busy life.</h1>
+        <p class="hero-sub" data-animate>I'm not a software engineer. I'm a founder, accelerator lead, and dad of two. I set the direction, make the calls, and own the outcomes. The stack does the carrying.</p>
 
-        <div class="process-widget" id="process-widget" data-animate aria-label="Animated demonstration of Claude Code running a task">
+        <div class="process-widget" id="process-widget" data-animate aria-label="Animated demonstration of Claude Code routing a task">
           <div class="process-widget-header">
             <span class="pw-dot" style="background:#f43f5e"></span>
             <span class="pw-dot" style="background:#f59e0b"></span>
             <span class="pw-dot" style="background:#10b981"></span>
-            <span class="pw-title">claude-code: ~/finance-tracker</span>
+            <span class="pw-title">claude-code: ~/augmented-me</span>
           </div>
           <div class="process-widget-body">
             <div class="pw-prompt-row">
@@ -83,8 +147,8 @@
                 <line x1="12" y1="22.08" x2="12" y2="12"/>
               </svg>
             </span>
-            <span class="stat-value" data-count="28">0</span>
-            <span class="stat-label">Plugins</span>
+            <span class="stat-value" data-count="23">0</span>
+            <span class="stat-label">AI Tools</span>
           </div>
           <div class="stat">
             <span class="stat-icon" aria-hidden="true">
@@ -92,7 +156,7 @@
                 <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
               </svg>
             </span>
-            <span class="stat-value" data-count="63">0</span>
+            <span class="stat-value" data-count="91">0</span>
             <span class="stat-label">Skills</span>
           </div>
           <div class="stat">
@@ -102,23 +166,22 @@
                 <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
               </svg>
             </span>
-            <span class="stat-value" data-count="9">0</span>
-            <span class="stat-label">Integrations</span>
+            <span class="stat-value" data-count="7">0</span>
+            <span class="stat-label">Live Projects</span>
           </div>
           <div class="stat">
             <span class="stat-icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
-                <path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
               </svg>
             </span>
-            <span class="stat-value" data-count="4">0</span>
-            <span class="stat-label">Active Projects</span>
+            <span class="stat-value" data-count="30">0</span>
+            <span class="stat-label">Minutes</span>
           </div>
         </div>
 
-        <a href="#architecture" class="scroll-hint" aria-label="Scroll to see how it works">
-          See how it works
+        <a href="#the-shift" class="scroll-hint" aria-label="Scroll to see how it started">
+          See how it started
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
             <path d="M12 5v14M5 12l7 7 7-7"/>
           </svg>
@@ -126,965 +189,809 @@
       </div>
     </section>
 
-  <!-- Sections added in Tasks 4-13 (each adds inside <main>) -->
-
-  <!-- Task 4: Architecture Diagram -->
-  <section class="section arch-section" id="architecture">
-    <div class="container">
-      <h2 class="arch-headline" data-animate>From a decision in my head to a deployed website, a sent email, or a scheduled calendar event. Here's how the engine connects.</h2>
-    </div>
-
-    <div class="arch-diagram" data-animate>
-      <!-- Desktop SVG diagram -->
-      <svg class="arch-svg" viewBox="0 0 1040 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="arch-title arch-desc">
-        <title id="arch-title">Claude Code Architecture Flow</title>
-        <desc id="arch-desc">Data flow diagram showing: You Type feeds into Context Engine, which feeds into Claude Brain, which feeds into Execution Layer (with External Services below), which feeds into Outputs</desc>
-
-        <defs>
-          <!-- Animated dash for flow lines -->
-          <style>
-            .flow-line { stroke: #cbd5e1; stroke-width: 2; fill: none; stroke-dasharray: 8 6; animation: flow-dash 1.5s linear infinite; }
-            .flow-line-active { stroke: #6366f1; }
-            .arch-node { transition: filter 0.2s; cursor: pointer; }
-            .arch-node:hover { filter: drop-shadow(0 0 12px rgba(99,102,241,0.4)); }
-            .node-rect { fill: white; stroke: #e2e8f0; stroke-width: 1.5; rx: 12; }
-            .node-icon { font-size: 28px; }
-            .node-label { font-family: Inter, sans-serif; font-size: 13px; font-weight: 600; fill: #0f172a; }
-            .node-sub { font-family: Inter, sans-serif; font-size: 11px; fill: #94a3b8; }
-            .node-badge { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700; fill: #6366f1; }
-          </style>
-
-          <!-- Glow filter -->
-          <filter id="glow">
-            <feGaussianBlur stdDeviation="3" result="blur"/>
-            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-        </defs>
-
-        <!-- ─── Connection lines (drawn behind nodes) ─── -->
-        <!-- You Type → Context Engine -->
-        <path class="flow-line" d="M 185 130 L 255 130"/>
-        <!-- Context Engine → Brain -->
-        <path class="flow-line flow-line-active" d="M 395 130 L 465 130"/>
-        <!-- Brain → Execution -->
-        <path class="flow-line flow-line-active" d="M 605 130 L 675 130"/>
-        <!-- Execution → Outputs -->
-        <path class="flow-line" d="M 815 130 L 885 130"/>
-        <!-- Execution → External Services (vertical branch) -->
-        <path class="flow-line" d="M 745 190 L 745 230"/>
-
-        <!-- ─── Node 1: You Type ─── -->
-        <a href="#hero" class="arch-node" onclick="event.preventDefault(); document.getElementById('hero').scrollIntoView({behavior:'smooth'})">
-          <rect class="node-rect" x="30" y="80" width="155" height="100" rx="12"/>
-          <text x="107" y="118" text-anchor="middle" class="node-icon">⌨️</text>
-          <text x="107" y="148" text-anchor="middle" class="node-label">You Type</text>
-          <text x="107" y="165" text-anchor="middle" class="node-sub">terminal prompt</text>
-        </a>
-
-        <!-- ─── Node 2: Context Engine ─── -->
-        <a href="#context" class="arch-node" onclick="event.preventDefault(); document.getElementById('context').scrollIntoView({behavior:'smooth'})">
-          <rect class="node-rect" x="255" y="80" width="140" height="100" rx="12" style="stroke: #06b6d4;"/>
-          <text x="325" y="118" text-anchor="middle" class="node-icon">📄</text>
-          <text x="325" y="148" text-anchor="middle" class="node-label">Context Engine</text>
-          <text x="325" y="165" text-anchor="middle" class="node-badge">3 layers</text>
-        </a>
-
-        <!-- ─── Node 3: Claude Brain ─── -->
-        <a href="#brain" class="arch-node" onclick="event.preventDefault(); document.getElementById('brain').scrollIntoView({behavior:'smooth'})">
-          <rect class="node-rect" x="465" y="65" width="140" height="130" rx="12" style="stroke: #6366f1; stroke-width: 2;"/>
-          <text x="535" y="113" text-anchor="middle" class="node-icon">🧠</text>
-          <text x="535" y="143" text-anchor="middle" class="node-label">Claude Brain</text>
-          <text x="535" y="160" text-anchor="middle" class="node-sub">Opus 4.6</text>
-          <text x="535" y="178" text-anchor="middle" class="node-badge">orchestrator</text>
-        </a>
-
-        <!-- ─── Node 4: Execution ─── -->
-        <a href="#skills" class="arch-node" onclick="event.preventDefault(); document.getElementById('skills').scrollIntoView({behavior:'smooth'})">
-          <rect class="node-rect" x="675" y="80" width="140" height="100" rx="12" style="stroke: #8b5cf6;"/>
-          <text x="745" y="118" text-anchor="middle" class="node-icon">⚡</text>
-          <text x="745" y="148" text-anchor="middle" class="node-label">Execution Layer</text>
-          <text x="745" y="165" text-anchor="middle" class="node-badge">91 tools</text>
-        </a>
-
-        <!-- ─── Node 5: Outputs ─── -->
-        <a href="#outputs" class="arch-node" onclick="event.preventDefault(); document.getElementById('outputs').scrollIntoView({behavior:'smooth'})">
-          <rect class="node-rect" x="885" y="80" width="140" height="100" rx="12" style="stroke: #10b981;"/>
-          <text x="955" y="118" text-anchor="middle" class="node-icon">🚀</text>
-          <text x="955" y="148" text-anchor="middle" class="node-label">Outputs</text>
-          <text x="955" y="165" text-anchor="middle" class="node-sub">3 output lanes</text>
-        </a>
-
-        <!-- ─── Node 6: External Services (branch below Execution) ─── -->
-        <a href="#integrations" class="arch-node" onclick="event.preventDefault(); document.getElementById('integrations').scrollIntoView({behavior:'smooth'})">
-          <rect class="node-rect" x="670" y="230" width="150" height="72" rx="12" style="stroke: #06b6d4;"/>
-          <text x="745" y="262" text-anchor="middle" class="node-icon" style="font-size:20px">🌐</text>
-          <text x="745" y="284" text-anchor="middle" class="node-label">External Services</text>
-          <text x="745" y="298" text-anchor="middle" class="node-badge">9 MCP servers</text>
-        </a>
-      </svg>
-
-      <!-- Mobile fallback: vertical stack -->
-      <div class="arch-mobile">
-        <a href="#hero" class="arch-mobile-node">⌨️ <span>You Type</span></a>
-        <div class="arch-mobile-arrow" aria-hidden="true">↓</div>
-        <a href="#context" class="arch-mobile-node">📄 <span>Context Engine <em>3 layers</em></span></a>
-        <div class="arch-mobile-arrow" aria-hidden="true">↓</div>
-        <a href="#brain" class="arch-mobile-node arch-mobile-featured">🧠 <span>Claude Brain <em>Opus 4.6</em></span></a>
-        <div class="arch-mobile-arrow" aria-hidden="true">↓</div>
-        <a href="#skills" class="arch-mobile-node">⚡ <span>Execution Layer <em>91 tools</em></span></a>
-        <div class="arch-mobile-arrow" aria-hidden="true">↓</div>
-        <a href="#integrations" class="arch-mobile-node">🌐 <span>External Services <em>9 MCP</em></span></a>
-        <!-- Whisper is included within External Services count -->
-        <div class="arch-mobile-arrow" aria-hidden="true">↓</div>
-        <a href="#outputs" class="arch-mobile-node">🚀 <span>Outputs <em>3 lanes</em></span></a>
+    <!-- ═══════════════════════════════════════════════════════
+         CHAPTER 2. THE SHIFT
+    ═══════════════════════════════════════════════════════ -->
+    <section class="section section-alt" id="the-shift">
+      <div class="section-header" data-animate>
+        <span class="section-number" aria-hidden="true">01</span>
+        <div class="section-label-tag">What changed</div>
+        <h2>One chatbot was never going to be enough.</h2>
+        <p class="section-intro">Two years ago, AI meant one tab, one prompt, one answer at a time. That worked for simple tasks. Then the tasks got bigger.</p>
       </div>
-    </div>
-  </section>
 
-  <!-- Task 5: Context Engine Section -->
-  <section class="section section-alt" id="context">
-    <div class="section-header" data-animate>
-      <span class="section-number" aria-hidden="true">01</span>
-      <div class="section-label-tag">Context Engine</div>
-      <h2>"It Already Knows Who I Am"</h2>
-      <p class="section-intro">Before I type anything, Claude has already loaded a file called CLAUDE.md that tells it who I am, what projects I'm working on, how I like my code written, and what conventions to follow. It's like briefing a new colleague, except the briefing happens automatically, every time.</p>
-    </div>
-
-    <!-- Cascade diagram -->
-    <div class="cascade-diagram" data-animate>
-      <div class="cascade-card">
-        <div class="cascade-card-header">
-          <span class="cascade-icon">🌍</span>
-          <div>
-            <div class="cascade-card-title">~/.claude/CLAUDE.md</div>
-            <div class="cascade-card-subtitle">Global, loads in every session</div>
-          </div>
-        </div>
-        <div class="cascade-snippet">"I'm Ben Green. TypeScript strict. Concise responses. No docstrings. Conventional commits."</div>
-      </div>
-      <div class="cascade-arrow">↓ merges into</div>
-      <div class="cascade-card">
-        <div class="cascade-card-header">
-          <span class="cascade-icon">📁</span>
-          <div>
-            <div class="cascade-card-title">project/CLAUDE.md</div>
-            <div class="cascade-card-subtitle">Project, loads when in this directory</div>
-          </div>
-        </div>
-        <div class="cascade-snippet">"Next.js 14, Supabase, AUD stored as cents. Check BACKLOG.md before starting work."</div>
-      </div>
-      <div class="cascade-arrow">↓ merges into</div>
-      <div class="cascade-card">
-        <div class="cascade-card-header">
-          <span class="cascade-icon">📂</span>
-          <div>
-            <div class="cascade-card-title">src/components/CLAUDE.md</div>
-            <div class="cascade-card-subtitle">Local, loads for this specific folder</div>
-          </div>
-        </div>
-        <div class="cascade-snippet">"Components here use shadcn/ui. Server components by default, 'use client' only for interactivity."</div>
-      </div>
-    </div>
-
-    <!-- Expandable detail -->
-    <div class="expandable-card" data-animate>
-      <button class="expandable-header" aria-expanded="false">
-        <span>What loads in my setup</span>
-        <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
-      <div class="expandable-body">
-        <div class="expandable-inner">
-          <div class="pill-section-label">Identity &amp; Preferences</div>
-          <div class="pill-grid">
-            <span class="pill">👤 Name &amp; location (Melbourne AEST)</span>
-            <span class="pill">✍️ Concise responses, no preamble</span>
-            <span class="pill">📐 TypeScript strict mode</span>
-            <span class="pill">🔀 Conventional commits</span>
-          </div>
-          <div class="pill-section-label" style="margin-top:16px">Project: Finance Tracker</div>
-          <div class="pill-grid">
-            <span class="pill">⚛️ Next.js 14 App Router</span>
-            <span class="pill">🗃️ Supabase + RLS</span>
-            <span class="pill">💰 AUD stored as integer cents</span>
-            <span class="pill">🎨 Teal + slate design system</span>
-            <span class="pill">🏦 PocketSmith API integration</span>
-            <span class="pill">👨‍👩‍👧‍👦 Ben + Heather household</span>
-          </div>
-          <div class="pill-section-label" style="margin-top:16px">Also loads automatically</div>
-          <div class="pill-grid">
-            <span class="pill">📋 BACKLOG.md: current sprint</span>
-            <span class="pill">🧠 MEMORY.md: past decisions</span>
-            <span class="pill">📅 Australian financial year (Jul–Jun)</span>
-          </div>
+      <!-- Dog analogy video placeholder (Phase 3C) -->
+      <div class="shift-video-wrapper" data-animate>
+        <div class="shift-video-placeholder">
+          <div style="font-size:3rem">🐕</div>
+          <p>Dog analogy video — Phase 3C<br><small>Nano Banana + Veo 3 + ElevenLabs</small></p>
         </div>
       </div>
-    </div>
 
-    <blockquote class="real-example" data-animate>
-      <p>"Claude knows that my financial year runs July–June, that currency is stored as integer cents, and that the household includes Ben and Heather. I never have to remind it."</p>
-    </blockquote>
-  </section>
-
-  <!-- Task 6: The Brain Section -->
-  <section class="section section-alt" id="brain">
-    <div class="section-header" data-animate>
-      <span class="section-number" aria-hidden="true">02</span>
-      <div class="section-label-tag">Claude Brain</div>
-      <h2>"I Direct. It Delivers."</h2>
-      <p class="section-intro">I set the objective. I define the standard. I decide what gets built and why. Claude is the execution engine: it reads the context, selects the right skill, writes a plan, dispatches agents, and manages the whole process. I review the output and decide what ships.</p>
-    </div>
-
-    <!-- Decision flowchart: 7 steps -->
-    <div class="flow-steps" data-animate>
-      <div class="flow-step" style="--step-delay: 0s">
-        <div class="flow-step-icon">💬</div>
-        <div class="flow-step-label">Your<br>prompt</div>
-      </div>
-      <div class="flow-step-arrow" aria-hidden="true">→</div>
-      <div class="flow-step" style="--step-delay: 0.2s">
-        <div class="flow-step-icon">📄</div>
-        <div class="flow-step-label">Read<br>context</div>
-      </div>
-      <div class="flow-step-arrow" aria-hidden="true">→</div>
-      <div class="flow-step" style="--step-delay: 0.4s">
-        <div class="flow-step-icon">⚡</div>
-        <div class="flow-step-label">Select<br>skill</div>
-      </div>
-      <div class="flow-step-arrow" aria-hidden="true">→</div>
-      <div class="flow-step" style="--step-delay: 0.6s">
-        <div class="flow-step-icon">📋</div>
-        <div class="flow-step-label">Write<br>plan</div>
-      </div>
-      <div class="flow-step-arrow" aria-hidden="true">→</div>
-      <div class="flow-step" style="--step-delay: 0.8s">
-        <div class="flow-step-icon">🤖</div>
-        <div class="flow-step-label">Dispatch<br>agents</div>
-      </div>
-      <div class="flow-step-arrow" aria-hidden="true">→</div>
-      <div class="flow-step" style="--step-delay: 1.0s">
-        <div class="flow-step-icon">✅</div>
-        <div class="flow-step-label">Review<br>code</div>
-      </div>
-      <div class="flow-step-arrow" aria-hidden="true">→</div>
-      <div class="flow-step" style="--step-delay: 1.2s">
-        <div class="flow-step-icon">🚀</div>
-        <div class="flow-step-label">Ship<br>it</div>
-      </div>
-    </div>
-
-    <!-- Expandable: In my setup -->
-    <div class="expandable-card" data-animate>
-      <button class="expandable-header" aria-expanded="false">
-        <span>How it works in my setup</span>
-        <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-      </button>
-      <div class="expandable-body">
-        <div class="expandable-inner">
-          <div class="pill-section-label">Models</div>
-          <div class="pill-grid">
-            <span class="pill">🧠 Claude Opus 4.6: complex tasks, planning</span>
-            <span class="pill">⚡ Claude Sonnet 4.6: fast mode, quick edits</span>
-          </div>
-          <div class="pill-section-label" style="margin-top:16px">Orchestration (Superpowers)</div>
-          <div class="pill-grid">
-            <span class="pill">💡 Brainstorm → spec</span>
-            <span class="pill">📝 Spec → implementation plan</span>
-            <span class="pill">🔨 Plan → execute with agents</span>
-            <span class="pill">✅ Review → commit</span>
-          </div>
-          <div class="pill-section-label" style="margin-top:16px">Development discipline</div>
-          <div class="pill-grid">
-            <span class="pill">🔴 Write failing test first (TDD)</span>
-            <span class="pill">🟢 Implement until tests pass</span>
-            <span class="pill">🌿 Git worktree isolation per feature</span>
-            <span class="pill">📦 Commit after every task</span>
+      <!-- Split screen: old vs new world -->
+      <div class="shift-split" data-animate>
+        <div class="shift-split-panel">
+          <div class="shift-panel-label">Two years ago</div>
+          <div class="shift-panel-items">
+            <div class="shift-panel-item">One AI. One window.</div>
+            <div class="shift-panel-item">One task at a time.</div>
+            <div class="shift-panel-item">Copy, paste, repeat.</div>
+            <div class="shift-panel-item">No memory. No tools. No handoffs.</div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <blockquote class="real-example" data-animate>
-      <p>"I defined the 12 tasks, set the acceptance criteria, and went to bed. By morning, all 12 were complete, 42 tests passing, and a Vercel preview was ready for my review. I decided what to build. Claude built it."</p>
-    </blockquote>
-  </section>
-
-  <!-- Task 7: Plugins & Skills Section -->
-  <section class="section section-alt" id="skills">
-    <div class="section-header" data-animate>
-      <span class="section-number" aria-hidden="true">03</span>
-      <div class="section-label-tag">Plugins &amp; Skills</div>
-      <h2>"It Has 91 Superpowers"</h2>
-      <p class="section-intro">Plugins are like apps you install on your phone that give Claude new abilities. Skills are like playbooks: step-by-step workflows for specific tasks. Together, I have 28 plugins + 63 skills = 91 capabilities spanning development, marketing, design, finance, and more.</p>
-    </div>
-
-    <div class="skills-grid" data-animate>
-      <!-- Category 1 -->
-      <div class="skill-category">
-        <button class="skill-category-header" aria-expanded="false">
-          <span class="skill-category-icon">🛠️</span>
-          <span class="skill-category-name">Development</span>
-          <span class="skill-category-count">22</span>
-          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="skill-category-body">
-          <div class="pill-grid">
-            <span class="pill">superpowers</span><span class="pill">code-review</span><span class="pill">code-simplifier</span>
-            <span class="pill">TDD workflow</span><span class="pill">git worktrees</span><span class="pill">feature-dev</span>
-            <span class="pill">commit-commands</span><span class="pill">supabase</span><span class="pill">github</span>
-            <span class="pill">security-guidance</span><span class="pill">vercel deploy</span><span class="pill">playwright</span>
+        <div class="shift-split-panel new">
+          <div class="shift-panel-label new-label">Now</div>
+          <div class="shift-panel-items">
+            <div class="shift-panel-item">Twenty tools. One workflow.</div>
+            <div class="shift-panel-item">Running together.</div>
+            <div class="shift-panel-item">Research. Design. Code. Video. Voice.</div>
+            <div class="shift-panel-item">All from one prompt, one seat.</div>
           </div>
         </div>
       </div>
 
-      <!-- Category 2 -->
-      <div class="skill-category">
-        <button class="skill-category-header" aria-expanded="false">
-          <span class="skill-category-icon">📣</span>
-          <span class="skill-category-name">Marketing &amp; Content</span>
-          <span class="skill-category-count">20</span>
-          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="skill-category-body">
-          <div class="pill-grid">
-            <span class="pill">copywriting</span><span class="pill">SEO</span><span class="pill">email sequences</span>
-            <span class="pill">social content</span><span class="pill">brand voice</span><span class="pill">ad creative</span>
-            <span class="pill">content strategy</span><span class="pill">cold email</span><span class="pill">LinkedIn posts</span>
+      <blockquote class="real-example" data-animate>
+        <p>"The stack you're about to see handles things that would take a week done the old way. Research synthesis. Brand photography. Code review. Video generation. Overnight automation. All from one seat."</p>
+      </blockquote>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         CHAPTER 3. THE ENSEMBLE
+    ═══════════════════════════════════════════════════════ -->
+    <section class="section" id="ensemble">
+      <div class="section-header" data-animate>
+        <span class="section-number" aria-hidden="true">02</span>
+        <div class="section-label-tag">The cast</div>
+        <h2>Twenty tools. Each one hired for a reason.</h2>
+        <p class="section-intro">Every tool in this stack has a specific job. None of them overlap. Claude Code directs the ensemble. The others execute.</p>
+      </div>
+
+      <div class="ensemble-grid" data-animate>
+        <div class="ensemble-tool">
+          <div class="ensemble-tool-icon">⚡</div>
+          <div class="ensemble-tool-name">Claude Code</div>
+          <div class="ensemble-tool-role">Orchestrator. Reads files, writes code, routes to specialists.</div>
+        </div>
+        <div class="ensemble-tool">
+          <div class="ensemble-tool-icon">🎨</div>
+          <div class="ensemble-tool-name">Canva</div>
+          <div class="ensemble-tool-role">Video and marketing content. Brand guides, social assets.</div>
+        </div>
+        <div class="ensemble-tool">
+          <div class="ensemble-tool-icon">📓</div>
+          <div class="ensemble-tool-name">NotebookLM</div>
+          <div class="ensemble-tool-role">Research synthesis. Long document Q and A.</div>
+        </div>
+        <div class="ensemble-tool">
+          <div class="ensemble-tool-icon">🍌</div>
+          <div class="ensemble-tool-name">Nano Banana</div>
+          <div class="ensemble-tool-role">Image generation. Brand photography. Hero visuals.</div>
+        </div>
+        <div class="ensemble-tool">
+          <div class="ensemble-tool-icon">🎬</div>
+          <div class="ensemble-tool-name">Higgsfield</div>
+          <div class="ensemble-tool-role">Video and morph generation. Wireframe to photoreal.</div>
+        </div>
+        <div class="ensemble-tool">
+          <div class="ensemble-tool-icon">▲</div>
+          <div class="ensemble-tool-name">Vercel</div>
+          <div class="ensemble-tool-role">Deploy and host. Model routing via AI Gateway.</div>
+        </div>
+        <div class="ensemble-tool">
+          <div class="ensemble-tool-icon">🗃️</div>
+          <div class="ensemble-tool-name">Supabase</div>
+          <div class="ensemble-tool-role">Postgres database. Row-level security. Backend.</div>
+        </div>
+        <div class="ensemble-tool">
+          <div class="ensemble-tool-icon">🔊</div>
+          <div class="ensemble-tool-name">ElevenLabs</div>
+          <div class="ensemble-tool-role">Voice generation. Marketing audio. Character voices.</div>
+        </div>
+        <div class="ensemble-tool">
+          <div class="ensemble-tool-icon">🖼️</div>
+          <div class="ensemble-tool-name">Midjourney</div>
+          <div class="ensemble-tool-role">Character development. Creative direction.</div>
+        </div>
+        <div class="ensemble-tool">
+          <div class="ensemble-tool-icon">📝</div>
+          <div class="ensemble-tool-name">Notion</div>
+          <div class="ensemble-tool-role">Content calendar. Planning hub. Source of truth.</div>
+        </div>
+      </div>
+
+      <div class="ensemble-expand" data-animate>
+        <button id="show-all-tools">Show all 23 tools</button>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         CHAPTER 4. THE CONDUCTOR
+    ═══════════════════════════════════════════════════════ -->
+    <section class="section section-alt" id="conductor">
+      <div class="section-header" data-animate>
+        <span class="section-number" aria-hidden="true">03</span>
+        <div class="section-label-tag">How it's organised</div>
+        <h2>One request. Five specialists. One result.</h2>
+        <p class="section-intro">Claude Code runs locally. It reads files, writes to the repository, and calls other tools through MCP. Model Context Protocol is a standard that lets AI tools talk to each other the way apps talk to APIs.</p>
+      </div>
+
+      <!-- Routing diagram (reused from brain section, updated) -->
+      <div class="flow-steps" data-animate>
+        <div class="flow-step" style="--step-delay: 0s">
+          <div class="flow-step-icon">💬</div>
+          <div class="flow-step-label">Your<br>prompt</div>
+        </div>
+        <div class="flow-step-arrow" aria-hidden="true">→</div>
+        <div class="flow-step" style="--step-delay: 0.2s">
+          <div class="flow-step-icon">⚡</div>
+          <div class="flow-step-label">Claude<br>Code</div>
+        </div>
+        <div class="flow-step-arrow" aria-hidden="true">→</div>
+        <div class="flow-step" style="--step-delay: 0.4s">
+          <div class="flow-step-icon">🎨</div>
+          <div class="flow-step-label">Canva<br>MCP</div>
+        </div>
+        <div class="flow-step-arrow" aria-hidden="true">→</div>
+        <div class="flow-step" style="--step-delay: 0.6s">
+          <div class="flow-step-icon">▲</div>
+          <div class="flow-step-label">Vercel<br>deploy</div>
+        </div>
+        <div class="flow-step-arrow" aria-hidden="true">→</div>
+        <div class="flow-step" style="--step-delay: 0.8s">
+          <div class="flow-step-icon">📝</div>
+          <div class="flow-step-label">Notion<br>log</div>
+        </div>
+        <div class="flow-step-arrow" aria-hidden="true">→</div>
+        <div class="flow-step" style="--step-delay: 1.0s">
+          <div class="flow-step-icon">✅</div>
+          <div class="flow-step-label">Done</div>
+        </div>
+      </div>
+
+      <blockquote class="real-example" data-animate>
+        <p>"One prompt fans out. Canva makes the asset. Vercel ships the build. Notion logs the decision. Claude reports back. I did not click between apps once."</p>
+      </blockquote>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         CHAPTER 5. THE CONTEXT LAYER
+    ═══════════════════════════════════════════════════════ -->
+    <section class="section section-alt" id="context">
+      <div class="section-header" data-animate>
+        <span class="section-number" aria-hidden="true">04</span>
+        <div class="section-label-tag">The secret layer</div>
+        <h2>Every session starts with a full briefing.</h2>
+        <p class="section-intro">Claude Code reads a file called CLAUDE.md before every session. That file says who I am, what I'm building, and how I like things done. No re-explaining. No lost context. Memory files go further — they carry decisions across sessions, tools, and projects.</p>
+      </div>
+
+      <!-- Cascade diagram -->
+      <div class="cascade-diagram" data-animate>
+        <div class="cascade-card">
+          <div class="cascade-card-header">
+            <span class="cascade-icon">🌍</span>
+            <div>
+              <div class="cascade-card-title">~/.claude/CLAUDE.md</div>
+              <div class="cascade-card-subtitle">Global, loads in every session</div>
+            </div>
           </div>
+          <div class="cascade-snippet">"Ben Green. Founder, accelerator lead, dad of two. Melbourne, Australia. No em dashes. Australian English. Short sentences."</div>
         </div>
-      </div>
-
-      <!-- Category 3 -->
-      <div class="skill-category">
-        <button class="skill-category-header" aria-expanded="false">
-          <span class="skill-category-icon">🎨</span>
-          <span class="skill-category-name">Design</span>
-          <span class="skill-category-count">8</span>
-          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="skill-category-body">
-          <div class="pill-grid">
-            <span class="pill">frontend-design</span><span class="pill">design-system</span><span class="pill">banner-design</span>
-            <span class="pill">ui-styling</span><span class="pill">Canva integration</span><span class="pill">image generation</span>
+        <div class="cascade-arrow">↓ merges into</div>
+        <div class="cascade-card">
+          <div class="cascade-card-header">
+            <span class="cascade-icon">📁</span>
+            <div>
+              <div class="cascade-card-title">project/CLAUDE.md</div>
+              <div class="cascade-card-subtitle">Project, loads when in this directory</div>
+            </div>
           </div>
+          <div class="cascade-snippet">"Building Augmented Me. Vanilla HTML/CSS/JS. Deployed to Vercel via greenmckimm-del/augmented-me. Voice rules apply to all copy."</div>
         </div>
-      </div>
-
-      <!-- Category 4 -->
-      <div class="skill-category">
-        <button class="skill-category-header" aria-expanded="false">
-          <span class="skill-category-icon">💰</span>
-          <span class="skill-category-name">Finance &amp; Business</span>
-          <span class="skill-category-count">6</span>
-          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="skill-category-body">
-          <div class="pill-grid">
-            <span class="pill">finance-skills</span><span class="pill">c-level-advisor</span><span class="pill">pricing strategy</span>
-            <span class="pill">revenue ops</span><span class="pill">sales enablement</span><span class="pill">analytics</span>
+        <div class="cascade-arrow">↓ merges into</div>
+        <div class="cascade-card">
+          <div class="cascade-card-header">
+            <span class="cascade-icon">🧠</span>
+            <div>
+              <div class="cascade-card-title">memory/project_augmented_me.md</div>
+              <div class="cascade-card-subtitle">Persistent memory, survives session end</div>
+            </div>
           </div>
+          <div class="cascade-snippet">"Phase 0 complete 2026-04-22. GitHub renamed to augmented-me. Phase 1 files written. 7 project cards. Hapya confirmed fully shareable."</div>
         </div>
       </div>
 
-      <!-- Category 5 -->
-      <div class="skill-category">
-        <button class="skill-category-header" aria-expanded="false">
-          <span class="skill-category-icon">⚡</span>
-          <span class="skill-category-name">Productivity</span>
-          <span class="skill-category-count">14</span>
-          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="skill-category-body">
-          <div class="pill-grid">
-            <span class="pill">GSD</span><span class="pill">PA</span><span class="pill">RALPH</span>
-            <span class="pill">planning-with-files</span><span class="pill">remote-control</span><span class="pill">claude-hud</span>
-            <span class="pill">claude-mem</span><span class="pill">meeting notes</span><span class="pill">GSD project mgmt</span>
-          </div>
-        </div>
+      <blockquote class="real-example" data-animate>
+        <p>"The stack remembers what the chat window does not. Decisions I made three months ago shape what gets generated today. No re-briefing. No drift."</p>
+      </blockquote>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         CHAPTER 6. I DIRECT, THEY EXECUTE
+    ═══════════════════════════════════════════════════════ -->
+    <section class="section" id="direct-execute">
+      <div class="section-header" data-animate>
+        <span class="section-number" aria-hidden="true">05</span>
+        <div class="section-label-tag">The human in the loop</div>
+        <h2>I write the brief. The stack executes it.</h2>
+        <p class="section-intro">The AI does not decide what to build. I do. The stack takes a decision I have already made and carries it through to completion.</p>
       </div>
 
-      <!-- Category 6 -->
-      <div class="skill-category">
-        <button class="skill-category-header" aria-expanded="false">
-          <span class="skill-category-icon">🔬</span>
-          <span class="skill-category-name">Research &amp; Learning</span>
-          <span class="skill-category-count">8</span>
-          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="skill-category-body">
-          <div class="pill-grid">
-            <span class="pill">deep-interview</span><span class="pill">learn</span><span class="pill">repomix</span>
-            <span class="pill">firecrawl</span><span class="pill">NotebookLM queries</span><span class="pill">web research</span>
-          </div>
-        </div>
+      <div data-animate>
+        <p style="font-size:0.875rem;color:#64748b;margin-bottom:0.75rem;">A real prompt from two weeks ago. Stockworth brand photography brief.</p>
+        <div class="direct-prompt">Generate six brand photography shots for Stockworth. Feed pellets, shed interior, biosecurity vestibule, flock chart, farm gate, wall texture. Rural Victoria feel. Warm earthy tones. Match the existing brand guide in Canva. Save to the Stockworth brand folder.</div>
       </div>
 
-      <!-- Category 7 -->
-      <div class="skill-category">
-        <button class="skill-category-header" aria-expanded="false">
-          <span class="skill-category-icon">🎬</span>
-          <span class="skill-category-name">Media</span>
-          <span class="skill-category-count">7</span>
-          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="skill-category-body">
-          <div class="pill-grid">
-            <span class="pill">image-generation</span><span class="pill">music-generator</span><span class="pill">video-creator</span>
-            <span class="pill">presentations</span><span class="pill">html-to-pdf</span><span class="pill">html-to-pptx</span>
-            <span class="pill">🎙️ Whisper transcription</span>
-          </div>
-        </div>
+      <div class="direct-fanout" data-animate>
+        <div class="fanout-node"><strong>Reads Canva brand guide</strong>via Canva MCP</div>
+        <div class="fanout-node"><strong>Generates 6 images</strong>via Nano Banana</div>
+        <div class="fanout-node"><strong>Reviews against brand tokens</strong>colour + tone check</div>
+        <div class="fanout-node"><strong>Saves to repository</strong>06-assets/images/</div>
+        <div class="fanout-node"><strong>Commits to Git</strong>conventional commit</div>
+        <div class="fanout-node"><strong>Notes in project memory</strong>6 shots, 5 approved</div>
       </div>
 
-      <!-- Category 8 -->
-      <div class="skill-category">
-        <button class="skill-category-header" aria-expanded="false">
-          <span class="skill-category-icon">💬</span>
-          <span class="skill-category-name">Communication</span>
-          <span class="skill-category-count">6</span>
-          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="skill-category-body">
-          <div class="pill-grid">
-            <span class="pill">gmail</span><span class="pill">calendar</span><span class="pill">whatsapp</span>
-            <span class="pill">zoom-meeting</span><span class="pill">Notion</span><span class="pill">NotebookLM</span>
-          </div>
-        </div>
+      <div class="direct-result" data-animate>5 kept. 1 regenerated. 8 minutes total.</div>
+
+      <blockquote class="real-example" data-animate>
+        <p>"I checked the results, kept five, regenerated one. The tools did the carrying. I did the thinking. That ratio matters."</p>
+      </blockquote>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         CHAPTER 7. AN AI FOR EVERY JOB
+    ═══════════════════════════════════════════════════════ -->
+    <section class="section section-alt" id="skills">
+      <div class="section-header" data-animate>
+        <span class="section-number" aria-hidden="true">06</span>
+        <div class="section-label-tag">The specialists</div>
+        <h2>Ninety-one skills. Three that will interest you most.</h2>
+        <p class="section-intro">Claude Code has 91 specialist skills configured. Each one does a specific thing, loaded when you need it. These three translate straight into Telstra work.</p>
       </div>
-    </div>
 
-    <blockquote class="real-example" data-animate>
-      <p>"When I need a LinkedIn post, I use the social-content skill. When I need to debug a failing test, the systematic-debugging skill takes over. I don't switch tools. Claude switches modes."</p>
-    </blockquote>
-  </section>
-
-  <!-- Task 8: Live Integrations Section -->
-  <section class="section section-alt" id="integrations">
-    <div class="section-header" data-animate>
-      <span class="section-number" aria-hidden="true">04</span>
-      <div class="section-label-tag">Live Integrations</div>
-      <h2>"It Talks to the Real World"</h2>
-      <p class="section-intro">MCP (Model Context Protocol) is how Claude connects to the outside world. Think of it like USB ports: each one plugs Claude into a different service. My calendar, my email, my research notebooks, my design tool, even voice transcription via Whisper. Claude can read from and write to all of them.</p>
-    </div>
-
-    <!-- Hub-and-spoke SVG -->
-    <div class="hub-wrapper" data-animate>
-      <svg class="hub-svg" viewBox="0 0 560 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="hub-title hub-desc">
-        <title id="hub-title">Claude MCP Integrations</title>
-        <desc id="hub-desc">Hub and spoke diagram: Claude Brain at centre connected to 9 services: Google Calendar, Gmail, Notion, Canva, NotebookLM, Playwright, Repomix, Claude Preview, Whisper</desc>
-
-        <defs>
-          <style>
-            .hub-line { stroke: #e2e8f0; stroke-width: 1.5; fill: none; stroke-dasharray: 6 5; animation: hub-dash 2s linear infinite; }
-            @keyframes hub-dash { to { stroke-dashoffset: -22; } }
-            .hub-node-circle { fill: white; stroke: #e2e8f0; stroke-width: 1.5; transition: filter 0.2s; }
-            .hub-node:hover .hub-node-circle { stroke: #6366f1; filter: drop-shadow(0 0 10px rgba(99,102,241,0.3)); }
-            .hub-label { font-family: Inter, sans-serif; font-size: 11px; font-weight: 600; fill: #475569; text-anchor: middle; }
-          </style>
-        </defs>
-
-        <!-- Connection lines: 9 nodes at 40° intervals clockwise from top -->
-        <!-- Calendar: top (280, 105) -->
-        <line class="hub-line" x1="280" y1="228" x2="280" y2="145"/>
-        <!-- Gmail: top-right (393, 146) -->
-        <line class="hub-line" x1="314" y1="240" x2="367" y2="177"/>
-        <!-- Notion: right (452, 250) -->
-        <line class="hub-line" x1="331" y1="271" x2="413" y2="257"/>
-        <!-- Canva: lower-right (432, 368) -->
-        <line class="hub-line" x1="325" y1="306" x2="397" y2="348"/>
-        <!-- NotebookLM: bottom-right (340, 444) -->
-        <line class="hub-line" x1="298" y1="329" x2="326" y2="406"/>
-        <!-- Playwright: bottom-left (220, 444) -->
-        <line class="hub-line" x1="262" y1="329" x2="234" y2="406"/>
-        <!-- Repomix: lower-left (129, 368) -->
-        <line class="hub-line" x1="235" y1="306" x2="163" y2="348"/>
-        <!-- Claude Preview: left (108, 250) -->
-        <line class="hub-line" x1="229" y1="271" x2="147" y2="257"/>
-        <!-- Whisper: top-left (168, 146) -->
-        <line class="hub-line" x1="247" y1="240" x2="194" y2="177"/>
-
-        <!-- Central node: Claude Brain -->
-        <circle cx="280" cy="280" r="50" fill="#eef2ff" stroke="#6366f1" stroke-width="2"/>
-        <text x="280" y="272" text-anchor="middle" font-size="28">🧠</text>
-        <text x="280" y="295" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="700" fill="#6366f1">Claude</text>
-
-        <!-- Service nodes: 9 at 40° intervals -->
-        <!-- Calendar: (280, 105) -->
-        <g class="hub-node">
-          <circle class="hub-node-circle" cx="280" cy="105" r="38"/>
-          <text x="280" y="98" text-anchor="middle" font-size="22">📅</text>
-          <text x="280" y="118" class="hub-label">Calendar</text>
-        </g>
-
-        <!-- Gmail: (393, 146) -->
-        <g class="hub-node">
-          <circle class="hub-node-circle" cx="393" cy="146" r="38"/>
-          <text x="393" y="139" text-anchor="middle" font-size="22">📧</text>
-          <text x="393" y="159" class="hub-label">Gmail</text>
-        </g>
-
-        <!-- Notion: (452, 250) -->
-        <g class="hub-node">
-          <circle class="hub-node-circle" cx="452" cy="250" r="38"/>
-          <text x="452" y="243" text-anchor="middle" font-size="22">📝</text>
-          <text x="452" y="263" class="hub-label">Notion</text>
-        </g>
-
-        <!-- Canva: (432, 368) -->
-        <g class="hub-node">
-          <circle class="hub-node-circle" cx="432" cy="368" r="38"/>
-          <text x="432" y="361" text-anchor="middle" font-size="22">🎨</text>
-          <text x="432" y="381" class="hub-label">Canva</text>
-        </g>
-
-        <!-- NotebookLM: (340, 444) -->
-        <g class="hub-node">
-          <circle class="hub-node-circle" cx="340" cy="444" r="38"/>
-          <text x="340" y="437" text-anchor="middle" font-size="22">📓</text>
-          <text x="340" y="457" class="hub-label">NotebookLM</text>
-        </g>
-
-        <!-- Playwright: (220, 444) -->
-        <g class="hub-node">
-          <circle class="hub-node-circle" cx="220" cy="444" r="38"/>
-          <text x="220" y="437" text-anchor="middle" font-size="22">🎭</text>
-          <text x="220" y="457" class="hub-label">Playwright</text>
-        </g>
-
-        <!-- Repomix: (129, 368) -->
-        <g class="hub-node">
-          <circle class="hub-node-circle" cx="129" cy="368" r="38"/>
-          <text x="129" y="361" text-anchor="middle" font-size="22">📦</text>
-          <text x="129" y="381" class="hub-label">Repomix</text>
-        </g>
-
-        <!-- Claude Preview: (108, 250) -->
-        <g class="hub-node">
-          <circle class="hub-node-circle" cx="108" cy="250" r="38"/>
-          <text x="108" y="243" text-anchor="middle" font-size="22">🖼️</text>
-          <text x="108" y="263" class="hub-label">Preview</text>
-        </g>
-
-        <!-- Whisper: (168, 146) -->
-        <g class="hub-node">
-          <circle class="hub-node-circle" cx="168" cy="146" r="38"/>
-          <text x="168" y="139" text-anchor="middle" font-size="22">🎙️</text>
-          <text x="168" y="159" class="hub-label">Whisper</text>
-        </g>
-      </svg>
-    </div>
-
-    <!-- Service detail cards -->
-    <div class="service-cards" data-animate>
-      <div class="service-card">
-        <span class="service-icon">📅</span>
-        <div>
-          <div class="service-name">Google Calendar</div>
-          <div class="service-desc">Read events, create meetings, find free time, send invites</div>
-        </div>
-      </div>
-      <div class="service-card">
-        <span class="service-icon">📧</span>
-        <div>
-          <div class="service-name">Gmail</div>
-          <div class="service-desc">Search inbox, read threads, draft replies, send emails</div>
-        </div>
-      </div>
-      <div class="service-card">
-        <span class="service-icon">📝</span>
-        <div>
-          <div class="service-name">Notion</div>
-          <div class="service-desc">Search pages, create databases, update projects</div>
-        </div>
-      </div>
-      <div class="service-card">
-        <span class="service-icon">🎨</span>
-        <div>
-          <div class="service-name">Canva</div>
-          <div class="service-desc">Generate designs, export assets, manage brand kits</div>
-        </div>
-      </div>
-      <div class="service-card">
-        <span class="service-icon">📓</span>
-        <div>
-          <div class="service-name">NotebookLM</div>
-          <div class="service-desc">Query 50+ research sources, generate reports, audio overviews</div>
-        </div>
-      </div>
-      <div class="service-card">
-        <span class="service-icon">🎭</span>
-        <div>
-          <div class="service-name">Playwright</div>
-          <div class="service-desc">Automate browser testing, take screenshots, verify deployments</div>
-        </div>
-      </div>
-      <div class="service-card">
-        <span class="service-icon">📦</span>
-        <div>
-          <div class="service-name">Repomix</div>
-          <div class="service-desc">Pack codebases for analysis, generate skills from repos</div>
-        </div>
-      </div>
-      <div class="service-card">
-        <span class="service-icon">🖼️</span>
-        <div>
-          <div class="service-name">Claude Preview</div>
-          <div class="service-desc">Live preview of web apps, click-test UI, verify visual changes</div>
-        </div>
-      </div>
-      <div class="service-card">
-        <span class="service-icon">🎙️</span>
-        <div>
-          <div class="service-name">Whisper</div>
-          <div class="service-desc">Speech-to-text transcription: voice notes, meeting recordings, and audio to structured markdown</div>
-        </div>
-      </div>
-    </div>
-
-    <blockquote class="real-example" data-animate>
-      <p>"I asked Claude to 'check what's on my calendar tomorrow and draft a prep email for my 10am meeting.' It read my calendar, found the meeting, checked the attendee list, and drafted a contextual email in Gmail, all from one prompt."</p>
-    </blockquote>
-  </section>
-
-  <!-- Task 9: Agents Section -->
-  <section class="section section-alt" id="agents">
-    <div class="section-header" data-animate>
-      <span class="section-number" aria-hidden="true">05</span>
-      <div class="section-label-tag">Agents</div>
-      <h2>"It Clones Itself"</h2>
-      <p class="section-intro">When a task is too big for one pass, Claude spawns autonomous agents, parallel copies of itself, that each handle a piece of the work. One explores the codebase, another writes tests, another implements the feature, and a reviewer checks the quality. They all report back.</p>
-    </div>
-
-    <!-- Agent dispatch diagram -->
-    <div class="agent-diagram" data-animate>
-      <div class="agent-brain">
-        <div class="agent-brain-icon">🧠</div>
-        <div class="agent-brain-label">Claude Brain</div>
-      </div>
-      <div class="agent-branches">
-        <div class="agent-branch" style="--branch-delay: 0.1s">
-          <div class="agent-branch-line" aria-hidden="true"></div>
-          <div class="agent-card">
-            <div class="agent-card-icon">🔍</div>
-            <div class="agent-card-content">
-              <div class="agent-card-name">Explorer Agent</div>
-              <div class="agent-card-result">"Found 15 files to change"</div>
+      <div class="skills-grid" data-animate>
+        <div class="skill-category">
+          <button class="skill-category-header" aria-expanded="false">
+            <span class="skill-category-icon">🔬</span>
+            <span class="skill-category-name">Research synthesis</span>
+            <span class="skill-category-count">NotebookLM + Claude + Obsidian</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="skill-category-body">
+            <div class="expandable-inner">
+              <p style="font-size:0.875rem;color:#475569;margin-bottom:1rem;">Feed a stack of industry papers. Get a structured summary, an audio overview, and a set of recommendations. An afternoon of work replaces a fortnight.</p>
+              <div class="pill-grid">
+                <span class="pill">notebooklm-query</span><span class="pill">deep-interview</span><span class="pill">learn</span>
+                <span class="pill">repomix</span><span class="pill">firecrawl</span><span class="pill">web research</span>
+              </div>
             </div>
           </div>
         </div>
-        <div class="agent-branch" style="--branch-delay: 0.35s">
-          <div class="agent-branch-line" aria-hidden="true"></div>
-          <div class="agent-card">
-            <div class="agent-card-icon">🏗️</div>
-            <div class="agent-card-content">
-              <div class="agent-card-name">Architect Agent</div>
-              <div class="agent-card-result">"Here's the implementation plan"</div>
+
+        <div class="skill-category">
+          <button class="skill-category-header" aria-expanded="false">
+            <span class="skill-category-icon">🎨</span>
+            <span class="skill-category-name">Brand asset production</span>
+            <span class="skill-category-count">Canva + Nano Banana + Higgsfield</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="skill-category-body">
+            <div class="expandable-inner">
+              <p style="font-size:0.875rem;color:#475569;margin-bottom:1rem;">Write one brief. Get layout options, brand photography, and short video. The Flock Science brand video took two days from nothing. No agency.</p>
+              <div class="pill-grid">
+                <span class="pill">image-generation</span><span class="pill">video-creator</span><span class="pill">Canva integration</span>
+                <span class="pill">frontend-design</span><span class="pill">banner-design</span>
+              </div>
             </div>
           </div>
         </div>
-        <div class="agent-branch" style="--branch-delay: 0.6s">
-          <div class="agent-branch-line" aria-hidden="true"></div>
-          <div class="agent-card">
-            <div class="agent-card-icon">✅</div>
-            <div class="agent-card-content">
-              <div class="agent-card-name">Review Agent</div>
-              <div class="agent-card-result">"3 issues found, 2 auto-fixed"</div>
+
+        <div class="skill-category">
+          <button class="skill-category-header" aria-expanded="false">
+            <span class="skill-category-icon">🚀</span>
+            <span class="skill-category-name">Build and ship</span>
+            <span class="skill-category-count">Claude Code + Vercel + Supabase</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="skill-category-body">
+            <div class="expandable-inner">
+              <p style="font-size:0.875rem;color:#475569;margin-bottom:1rem;">Write the spec, ship the site. Stockworth.com.au went from zero to live in four days. One operator. Three tools.</p>
+              <div class="pill-grid">
+                <span class="pill">superpowers</span><span class="pill">code-review</span><span class="pill">TDD workflow</span>
+                <span class="pill">vercel deploy</span><span class="pill">supabase</span><span class="pill">playwright</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <button class="skill-category-header" aria-expanded="false">
+            <span class="skill-category-icon">📣</span>
+            <span class="skill-category-name">Marketing &amp; Content</span>
+            <span class="skill-category-count">20 skills</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="skill-category-body">
+            <div class="expandable-inner">
+              <div class="pill-grid">
+                <span class="pill">copywriting</span><span class="pill">SEO</span><span class="pill">email sequences</span>
+                <span class="pill">social content</span><span class="pill">brand voice</span><span class="pill">ad creative</span>
+                <span class="pill">content strategy</span><span class="pill">cold email</span><span class="pill">LinkedIn posts</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <button class="skill-category-header" aria-expanded="false">
+            <span class="skill-category-icon">⚡</span>
+            <span class="skill-category-name">Productivity</span>
+            <span class="skill-category-count">14 skills</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="skill-category-body">
+            <div class="expandable-inner">
+              <div class="pill-grid">
+                <span class="pill">GSD</span><span class="pill">PA</span><span class="pill">planning-with-files</span>
+                <span class="pill">claude-mem</span><span class="pill">meeting notes</span><span class="pill">GSD project mgmt</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <button class="skill-category-header" aria-expanded="false">
+            <span class="skill-category-icon">💰</span>
+            <span class="skill-category-name">Finance &amp; Business</span>
+            <span class="skill-category-count">6 skills</span>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="skill-category-body">
+            <div class="expandable-inner">
+              <div class="pill-grid">
+                <span class="pill">finance-skills</span><span class="pill">c-level-advisor</span><span class="pill">pricing strategy</span>
+                <span class="pill">revenue ops</span><span class="pill">sales enablement</span><span class="pill">analytics</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Agent type cards -->
-    <div class="agent-types" data-animate>
-      <div class="agent-type-card">
-        <span class="agent-type-icon">🔍</span>
-        <div>
-          <div class="agent-type-name">Explore</div>
-          <div class="agent-type-desc">Fast codebase search and analysis</div>
+      <blockquote class="real-example" data-animate>
+        <p>"When I need a LinkedIn post, I use the social-content skill. When I need to debug a failing test, the systematic-debugging skill takes over. I don't switch tools. Claude switches modes."</p>
+      </blockquote>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         CHAPTER 8. INTEGRATIONS IN ACTION
+    ═══════════════════════════════════════════════════════ -->
+    <section class="section section-alt" id="integrations">
+      <div class="section-header" data-animate>
+        <span class="section-number" aria-hidden="true">07</span>
+        <div class="section-label-tag">The proof</div>
+        <h2>Six tools. Six demos. Watch how each one fits.</h2>
+        <p class="section-intro">Click any tool in the orbit to focus its demo. Each recording is around 50 seconds. No staging, no edits.</p>
+      </div>
+
+      <!-- Spline orbit placeholder (Phase 3D) -->
+      <div class="hub-wrapper" data-animate>
+        <svg class="hub-svg" viewBox="0 0 560 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="hub-title hub-desc">
+          <title id="hub-title">Claude MCP Integrations</title>
+          <desc id="hub-desc">Hub and spoke diagram: Claude Code at centre connected to: Canva, Nano Banana, NotebookLM, Higgsfield, Vercel, ElevenLabs</desc>
+
+          <defs>
+            <style>
+              .hub-line { stroke: #e2e8f0; stroke-width: 1.5; fill: none; stroke-dasharray: 6 5; animation: hub-dash 2s linear infinite; }
+              @keyframes hub-dash { to { stroke-dashoffset: -22; } }
+              .hub-node-circle { fill: white; stroke: #e2e8f0; stroke-width: 1.5; transition: filter 0.2s; }
+              .hub-node:hover .hub-node-circle { stroke: #6366f1; filter: drop-shadow(0 0 10px rgba(99,102,241,0.3)); }
+              .hub-label { font-family: Inter, sans-serif; font-size: 11px; font-weight: 600; fill: #475569; text-anchor: middle; }
+            </style>
+          </defs>
+
+          <!-- Lines to 6 tools at 60° intervals -->
+          <line class="hub-line" x1="280" y1="230" x2="280" y2="145"/>
+          <line class="hub-line" x1="308" y1="245" x2="371" y2="177"/>
+          <line class="hub-line" x1="316" y1="285" x2="413" y2="285"/>
+          <line class="hub-line" x1="308" y1="315" x2="371" y2="383"/>
+          <line class="hub-line" x1="252" y1="315" x2="189" y2="383"/>
+          <line class="hub-line" x1="244" y1="285" x2="147" y2="285"/>
+
+          <!-- Central node -->
+          <circle cx="280" cy="280" r="50" fill="#eef2ff" stroke="#6366f1" stroke-width="2"/>
+          <text x="280" y="272" text-anchor="middle" font-size="28">⚡</text>
+          <text x="280" y="295" text-anchor="middle" font-family="Inter,sans-serif" font-size="12" font-weight="700" fill="#6366f1">Claude Code</text>
+
+          <!-- Canva -->
+          <g class="hub-node"><circle class="hub-node-circle" cx="280" cy="105" r="38"/><text x="280" y="98" text-anchor="middle" font-size="22">🎨</text><text x="280" y="118" class="hub-label">Canva</text></g>
+          <!-- Nano Banana -->
+          <g class="hub-node"><circle class="hub-node-circle" cx="393" cy="160" r="38"/><text x="393" y="153" text-anchor="middle" font-size="22">🍌</text><text x="393" y="173" class="hub-label">Nano Banana</text></g>
+          <!-- ElevenLabs -->
+          <g class="hub-node"><circle class="hub-node-circle" cx="452" cy="285" r="38"/><text x="452" y="278" text-anchor="middle" font-size="22">🔊</text><text x="452" y="298" class="hub-label">ElevenLabs</text></g>
+          <!-- Higgsfield -->
+          <g class="hub-node"><circle class="hub-node-circle" cx="393" cy="400" r="38"/><text x="393" y="393" text-anchor="middle" font-size="22">🎬</text><text x="393" y="413" class="hub-label">Higgsfield</text></g>
+          <!-- Vercel -->
+          <g class="hub-node"><circle class="hub-node-circle" cx="167" cy="400" r="38"/><text x="167" y="393" text-anchor="middle" font-size="22">▲</text><text x="167" y="413" class="hub-label">Vercel</text></g>
+          <!-- NotebookLM -->
+          <g class="hub-node"><circle class="hub-node-circle" cx="108" cy="285" r="38"/><text x="108" y="278" text-anchor="middle" font-size="22">📓</text><text x="108" y="298" class="hub-label">NotebookLM</text></g>
+        </svg>
+      </div>
+
+      <!-- Demo video placeholders (Phase 3B) -->
+      <div class="service-cards" data-animate>
+        <div class="service-card">
+          <span class="service-icon">🎨</span>
+          <div>
+            <div class="service-name">Canva</div>
+            <div class="service-desc">Brief entered. Three layout options returned. One exported. Under 3 minutes.</div>
+          </div>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🍌</span>
+          <div>
+            <div class="service-name">Nano Banana</div>
+            <div class="service-desc">Stockworth shed interior prompt. Six iterations. Five approved. 8 minutes.</div>
+          </div>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">📓</span>
+          <div>
+            <div class="service-name">NotebookLM</div>
+            <div class="service-desc">40-page industry paper uploaded. Summary, audio overview, key takeaways. 30 minutes.</div>
+          </div>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">🎬</span>
+          <div>
+            <div class="service-name">Higgsfield</div>
+            <div class="service-desc">Wireframe chicken to photoreal hen. One prompt. Wan 2.7 morph. 2 minutes.</div>
+          </div>
+        </div>
+        <div class="service-card">
+          <span class="service-icon">▲</span>
+          <div>
+            <div class="service-name">Vercel</div>
+            <div class="service-desc">Commit pushed. Build triggered. Live URL returned. Under 90 seconds.</div>
+          </div>
+        </div>
+        <div class="service-card service-card-featured">
+          <span class="service-icon">🔊</span>
+          <div>
+            <div class="service-name">ElevenLabs</div>
+            <div class="service-desc">Marketing script pasted. Voice generated. File downloaded. Under 60 seconds.</div>
+          </div>
         </div>
       </div>
-      <div class="agent-type-card">
-        <span class="agent-type-icon">📐</span>
-        <div>
-          <div class="agent-type-name">Plan</div>
-          <div class="agent-type-desc">Architecture and implementation strategy</div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         CHAPTER 9. THEY WORK WHILE I SLEEP
+    ═══════════════════════════════════════════════════════ -->
+    <section class="section" id="sleep">
+      <div class="section-header" data-animate>
+        <span class="section-number" aria-hidden="true">08</span>
+        <div class="section-label-tag">Overnight automation</div>
+        <h2>A lot of this happens while I'm asleep.</h2>
+        <p class="section-intro">Scheduled agents run on a timer. They handle the repetitive work: content audits, performance summaries, copy passes, backlog triage. By morning, the queue is clean.</p>
+      </div>
+
+      <!-- Agent dispatch diagram -->
+      <div class="agent-diagram" data-animate>
+        <div class="agent-brain">
+          <div class="agent-brain-icon">⚡</div>
+          <div class="agent-brain-label">Claude Code</div>
+        </div>
+        <div class="agent-branches">
+          <div class="agent-branch" style="--branch-delay: 0.1s">
+            <div class="agent-branch-line" aria-hidden="true"></div>
+            <div class="agent-card">
+              <div class="agent-card-icon">🔍</div>
+              <div class="agent-card-content">
+                <div class="agent-card-name">Audit Agent</div>
+                <div class="agent-card-result">"4 broken meta tags — fixed"</div>
+              </div>
+            </div>
+          </div>
+          <div class="agent-branch" style="--branch-delay: 0.35s">
+            <div class="agent-branch-line" aria-hidden="true"></div>
+            <div class="agent-card">
+              <div class="agent-card-icon">📊</div>
+              <div class="agent-card-content">
+                <div class="agent-card-name">Performance Agent</div>
+                <div class="agent-card-result">"2 LinkedIn drafts flagged for revision"</div>
+              </div>
+            </div>
+          </div>
+          <div class="agent-branch" style="--branch-delay: 0.6s">
+            <div class="agent-branch-line" aria-hidden="true"></div>
+            <div class="agent-card">
+              <div class="agent-card-icon">✍️</div>
+              <div class="agent-card-content">
+                <div class="agent-card-name">Copy Agent</div>
+                <div class="agent-card-result">"3 blog drafts humanized — ready for review"</div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="agent-type-card">
-        <span class="agent-type-icon">🏗️</span>
-        <div>
-          <div class="agent-type-name">Architect</div>
-          <div class="agent-type-desc">Designs feature blueprints and file structure</div>
+
+      <!-- Night shift timeline -->
+      <div class="night-timeline" data-animate>
+        <div class="night-event">
+          <div class="night-time">11:47 pm</div>
+          <div class="night-event-body"><strong>Site audit. Stockworth.</strong><span>4 broken meta tags found and fixed. Committed.</span></div>
+        </div>
+        <div class="night-event">
+          <div class="night-time">2:14 am</div>
+          <div class="night-event-body"><strong>LinkedIn performance summary.</strong><span>2 drafts flagged for revision. Saved to Notion.</span></div>
+        </div>
+        <div class="night-event">
+          <div class="night-time">5:03 am</div>
+          <div class="night-event-body"><strong>Humanize copy pass.</strong><span>3 blog drafts processed. Ready for review at breakfast.</span></div>
+        </div>
+        <div class="night-event">
+          <div class="night-time">6:30 am</div>
+          <div class="night-event-body"><strong>Morning backlog clean.</strong><span>7 tasks closed overnight.</span></div>
         </div>
       </div>
-      <div class="agent-type-card">
-        <span class="agent-type-icon">🔎</span>
-        <div>
-          <div class="agent-type-name">Explorer</div>
-          <div class="agent-type-desc">Traces execution paths and dependencies</div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         CHAPTER 10. REAL OUTPUTS
+    ═══════════════════════════════════════════════════════ -->
+    <section class="section" id="outputs">
+      <div class="section-header" data-animate>
+        <span class="section-number" aria-hidden="true">09</span>
+        <div class="section-label-tag">What comes out</div>
+        <h2>Three lanes. Code, actions, knowledge.</h2>
+        <p class="section-intro">Every task resolves to one of these three. A built thing. An effect in the world. A piece of knowledge stored for later.</p>
+      </div>
+
+      <div class="output-lanes" data-animate>
+        <div class="output-lane output-lane--code">
+          <div class="lane-header">
+            <span class="lane-icon">💻</span>
+            <h3>Code to sites</h3>
+          </div>
+          <div class="lane-flow">
+            <span class="lane-pill">Edit files</span>
+            <span class="lane-arrow">→</span>
+            <span class="lane-pill">Run tests</span>
+            <span class="lane-arrow">→</span>
+            <span class="lane-pill">Git commit</span>
+            <span class="lane-arrow">→</span>
+            <span class="lane-pill">Vercel deploys</span>
+            <span class="lane-arrow">→</span>
+            <span class="lane-pill lane-pill--final">Live ✓</span>
+          </div>
+          <p class="lane-desc">Stockworth.com.au. Big Isle Retreat. Family OS scaffold. Social Pulse dashboard. All shipped from the terminal.</p>
+        </div>
+
+        <div class="output-lane output-lane--actions">
+          <div class="lane-header">
+            <span class="lane-icon">⚡</span>
+            <h3>Actions to effects</h3>
+          </div>
+          <div class="lane-flow">
+            <span class="lane-pill">Claude prompt</span>
+            <span class="lane-arrow">→</span>
+            <span class="lane-pill">MCP call</span>
+            <span class="lane-arrow">→</span>
+            <span class="lane-pill lane-pill--final">Done in the world</span>
+          </div>
+          <p class="lane-desc">muru-D Labs whitepaper drafted. Notion content calendar auto-populated. Obsidian weekly review written. Claude acts, not just advises.</p>
+        </div>
+
+        <div class="output-lane output-lane--knowledge">
+          <div class="lane-header">
+            <span class="lane-icon">🧠</span>
+            <h3>Knowledge stored</h3>
+          </div>
+          <div class="lane-flow">
+            <span class="lane-pill">Decisions made</span>
+            <span class="lane-arrow">→</span>
+            <span class="lane-pill">Memory files</span>
+            <span class="lane-arrow">→</span>
+            <span class="lane-pill">Obsidian vault</span>
+            <span class="lane-arrow">→</span>
+            <span class="lane-pill lane-pill--final">Context restored</span>
+          </div>
+          <p class="lane-desc">400 Obsidian notes added in 90 days. None written longhand. Claude drafts, Ben edits, it saves. Every session ends with captured knowledge.</p>
         </div>
       </div>
-      <div class="agent-type-card">
-        <span class="agent-type-icon">✅</span>
-        <div>
-          <div class="agent-type-name">Code Reviewer</div>
-          <div class="agent-type-desc">Catches bugs, security issues, convention violations</div>
+
+      <blockquote class="real-example" data-animate>
+        <p>"I make one decision. By the time it executes, I have a committed feature, a passing test suite, an updated Supabase schema, and a session log in Obsidian — ready for the next conversation."</p>
+      </blockquote>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         CHAPTER 11. REAL PROJECTS
+    ═══════════════════════════════════════════════════════ -->
+    <section class="section section-alt" id="projects">
+      <div class="section-header" data-animate>
+        <span class="section-number" aria-hidden="true">10</span>
+        <div class="section-label-tag">The portfolio</div>
+        <h2>Seven projects. One operator. One stack.</h2>
+        <p class="section-intro">These are real. Click any card to open the live thing.</p>
+      </div>
+
+      <div class="projects-grid" data-animate>
+        <div class="project-card project-card--indigo">
+          <div class="project-emoji">🏠</div>
+          <h3 class="project-title">Family OS</h3>
+          <p class="project-subtitle">Household management platform for a family of four.</p>
+          <p class="project-desc">Budgets, net worth tracking, tax projections, AI insights, family calendar. Commercial planning complete. Phase 0 next.</p>
+          <div class="project-tags">
+            <span class="project-tag">Claude Code</span>
+            <span class="project-tag">Supabase</span>
+            <span class="project-tag">Vercel</span>
+            <span class="project-tag">Notion</span>
+          </div>
+        </div>
+
+        <div class="project-card project-card--violet">
+          <div class="project-emoji">🔬</div>
+          <h3 class="project-title">muru-D Labs</h3>
+          <p class="project-subtitle">AI x Telco convergence whitepaper for Telstra's startup arm.</p>
+          <p class="project-desc">50-source NotebookLM research notebook, whitepaper, and presentation. Phases 3 to 4 in progress.</p>
+          <div class="project-tags">
+            <span class="project-tag">Claude</span>
+            <span class="project-tag">NotebookLM</span>
+            <span class="project-tag">Google Imagen</span>
+          </div>
+        </div>
+
+        <div class="project-card project-card--cyan">
+          <div class="project-emoji">💼</div>
+          <h3 class="project-title">Personal Brand</h3>
+          <p class="project-subtitle">90-day LinkedIn playbook, running now.</p>
+          <p class="project-desc">5-pillar content framework, AI-assisted post drafting, consistent voice at scale.</p>
+          <div class="project-tags">
+            <span class="project-tag">Notion</span>
+            <span class="project-tag">Claude</span>
+            <span class="project-tag">Canva</span>
+          </div>
+        </div>
+
+        <div class="project-card project-card--emerald">
+          <div class="project-emoji">🏡</div>
+          <h3 class="project-title">Big Isle Retreat</h3>
+          <p class="project-subtitle">Luxury holiday rental on Phillip Island. 12 guests.</p>
+          <p class="project-desc">Brand, design, and site rebuild. Stitch for mockups, Nano Banana for photography, Next.js for build.</p>
+          <div class="project-tags">
+            <span class="project-tag">Canva</span>
+            <span class="project-tag">Nano Banana</span>
+            <span class="project-tag">Stitch</span>
+            <span class="project-tag">Next.js</span>
+          </div>
+        </div>
+
+        <div class="project-card project-card--indigo">
+          <div class="project-emoji">🐔</div>
+          <h3 class="project-title">Stockworth</h3>
+          <p class="project-subtitle">Rural business brand for a chicken farm in Victoria.</p>
+          <p class="project-desc">Brand photography generated via Nano Banana. Hero video via Higgsfield. Site live and password-protected.</p>
+          <div class="project-tags">
+            <span class="project-tag">Claude</span>
+            <span class="project-tag">Nano Banana</span>
+            <span class="project-tag">Higgsfield</span>
+            <span class="project-tag">Vercel</span>
+          </div>
+        </div>
+
+        <div class="project-card project-card--violet">
+          <div class="project-emoji">🐓</div>
+          <h3 class="project-title">Flock Science</h3>
+          <p class="project-subtitle">Backyard poultry owner's manual and community.</p>
+          <p class="project-desc">Educational content, Facebook community, brand assets. In build.</p>
+          <div class="project-tags">
+            <span class="project-tag">Claude</span>
+            <span class="project-tag">Canva</span>
+            <span class="project-tag">Higgsfield</span>
+            <span class="project-tag">Supabase</span>
+          </div>
+        </div>
+
+        <div class="project-card project-card--cyan">
+          <div class="project-emoji">⚕️</div>
+          <h3 class="project-title">Hapya</h3>
+          <p class="project-subtitle">Built for real customers. Running in production.</p>
+          <p class="project-desc">Bespoke AI architecture. LLM with Guardrails for validated output. AWS Transcribe for speech to text. Lambda, FastAPI, React, Docker. This one has paying customers.</p>
+          <div class="project-tags">
+            <span class="project-tag">LLM + Guardrails</span>
+            <span class="project-tag">AWS Transcribe</span>
+            <span class="project-tag">FastAPI</span>
+            <span class="project-tag">React</span>
+          </div>
         </div>
       </div>
-      <div class="agent-type-card">
-        <span class="agent-type-icon">🧹</span>
-        <div>
-          <div class="agent-type-name">Simplifier</div>
-          <div class="agent-type-desc">Refactors for clarity and maintainability</div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════════
+         CHAPTER 12. WHY THIS MATTERS FOR TELSTRA
+    ═══════════════════════════════════════════════════════ -->
+    <section class="section section-highlight" id="telstra">
+      <div class="section-header" data-animate>
+        <span class="section-number" aria-hidden="true">11</span>
+        <div class="section-label-tag">The Telstra angle</div>
+        <h2>Pick one loop. Orchestrate it. See what happens.</h2>
+        <p class="section-intro">Every one of these projects started with a single loop. One repetitive task that burned hours. I orchestrated it. Then I added another. You do not need twenty tools to start. You need one loop, one model, and one hour to set it up.</p>
+      </div>
+
+      <div class="telstra-cards" data-animate>
+        <div class="telstra-card">
+          <div class="telstra-card-title">Weekly exec report</div>
+          <div class="telstra-state"><strong>Now:</strong> 2 hours pulling from 5 dashboards and writing a narrative.</div>
+          <div class="telstra-state telstra-state-orchestrated"><strong>Orchestrated:</strong> scheduled agent runs Sunday night, draft lands in your inbox Monday morning, you review and send.</div>
+        </div>
+        <div class="telstra-card">
+          <div class="telstra-card-title">Customer complaint triage</div>
+          <div class="telstra-state"><strong>Now:</strong> team wakes up to a wall of tickets, no prioritisation.</div>
+          <div class="telstra-state telstra-state-orchestrated"><strong>Orchestrated:</strong> first-pass categorisation and draft responses run overnight, team starts with a prioritised queue.</div>
+        </div>
+        <div class="telstra-card">
+          <div class="telstra-card-title">Board deck first draft</div>
+          <div class="telstra-state"><strong>Now:</strong> 3 days pulling KPIs, strategy docs, and last quarter's deck.</div>
+          <div class="telstra-state telstra-state-orchestrated"><strong>Orchestrated:</strong> Claude reads all three, returns a structured first draft you sharpen rather than start from zero.</div>
         </div>
       </div>
-    </div>
 
-    <blockquote class="real-example" data-animate>
-      <p>"For the settings page redesign, Claude dispatched agents for each of the 12 tasks. Each agent wrote code, then a separate code-review agent inspected every change for bugs, security issues, and convention violations, before committing."</p>
-    </blockquote>
-  </section>
+      <p class="telstra-compliance" data-animate>These examples use only information you already have access to. Proper data governance applies. Talk to Ben about guardrails before you connect anything to live Telstra data.</p>
+    </section>
 
-<section class="section" id="outputs">
-  <div class="section-header" data-animate>
-    <span class="section-number" aria-hidden="true">06</span>
-    <h2>"It Builds Real Things"</h2>
-    <p class="section-intro">Every decision I make starts a pipeline. I define what needs to exist. Claude builds it. From a live website to a sent email to a structured knowledge base, here are the three output lanes.</p>
-  </div>
-
-  <div class="output-lanes" data-animate>
-    <!-- Lane 1: Code → Websites & Apps -->
-    <div class="output-lane output-lane--code">
-      <div class="lane-header">
-        <span class="lane-icon">💻</span>
-        <h3>Code → Websites &amp; Apps</h3>
+    <!-- ═══════════════════════════════════════════════════════
+         CHAPTER 13. HOW TO START
+    ═══════════════════════════════════════════════════════ -->
+    <section class="section" id="how-to-start">
+      <div class="section-header" data-animate>
+        <span class="section-number" aria-hidden="true">12</span>
+        <div class="section-label-tag">Your turn</div>
+        <h2>Three steps. That's the whole pitch.</h2>
+        <p class="section-intro">No courses. No reading list. One install, one channel, one conversation.</p>
       </div>
-      <div class="lane-flow">
-        <span class="lane-pill">Edit files</span>
-        <span class="lane-arrow">→</span>
-        <span class="lane-pill">Run tests</span>
-        <span class="lane-arrow">→</span>
-        <span class="lane-pill">Git commit</span>
-        <span class="lane-arrow">→</span>
-        <span class="lane-pill">Push</span>
-        <span class="lane-arrow">→</span>
-        <span class="lane-pill">Vercel deploys</span>
-        <span class="lane-arrow">→</span>
-        <span class="lane-pill lane-pill--final">Live site ✓</span>
-      </div>
-      <p class="lane-desc">The GreenMcKimm Family OS: a full-stack Next.js 14 app with Supabase backend. Budgets, net worth tracking, tax projections, AI insights, and a family calendar. 40+ features shipped entirely from the terminal.</p>
-    </div>
 
-    <!-- Lane 2: Actions → Real-World Effects -->
-    <div class="output-lane output-lane--actions">
-      <div class="lane-header">
-        <span class="lane-icon">⚡</span>
-        <h3>Actions → Real-World Effects</h3>
-      </div>
-      <div class="lane-flow">
-        <span class="lane-pill">Claude prompt</span>
-        <span class="lane-arrow">→</span>
-        <span class="lane-pill">MCP call</span>
-        <span class="lane-arrow">→</span>
-        <span class="lane-pill lane-pill--final">Email sent / Event created</span>
-      </div>
-      <p class="lane-desc">Non-code outputs that happen in the real world. Draft and send emails via Gmail MCP. Create calendar events. Export Canva designs. Schedule meetings. Claude acts, not just advises.</p>
-    </div>
-
-    <!-- Lane 3: Knowledge → Second Brain -->
-    <div class="output-lane output-lane--knowledge">
-      <div class="lane-header">
-        <span class="lane-icon">🧠</span>
-        <h3>Knowledge → Second Brain</h3>
-      </div>
-      <div class="lane-flow">
-        <span class="lane-pill">Decisions made</span>
-        <span class="lane-arrow">→</span>
-        <span class="lane-pill">Memory files</span>
-        <span class="lane-arrow">→</span>
-        <span class="lane-pill">Obsidian vault</span>
-        <span class="lane-arrow">→</span>
-        <span class="lane-pill lane-pill--final">Next session loads context</span>
-      </div>
-      <p class="lane-desc">Every session ends with captured knowledge. Decisions, session logs, architectural choices, all written to Obsidian and memory files. See how this works below ↓</p>
-    </div>
-  </div>
-
-  <blockquote class="real-example" data-animate>
-    <p>"I make one decision. By the time it executes, I have a committed feature, a passing test suite, an updated Supabase schema, and a session log in Obsidian, ready for the next conversation."</p>
-  </blockquote>
-</section>
-
-<section class="section section-highlight" id="second-brain">
-  <div class="section-header" data-animate>
-    <span class="section-number" aria-hidden="true">07</span>
-    <h2>"When the Conversation Ends, the Knowledge Stays"</h2>
-    <p class="section-intro">AI conversations are ephemeral. When the chat window closes, the context disappears. I solved this with a second brain. Every significant session logs to my Obsidian vault. Every architectural decision is saved to memory files. Every project has a living backlog. When Claude starts a new session, across any IDE or device, it picks up exactly where it left off.</p>
-  </div>
-
-  <div class="brain-layout" data-animate>
-    <!-- Animated file tree -->
-    <div class="file-tree" role="img" aria-label="File structure of Ben Green's second brain system">
-      <ul class="tree-root">
-        <li class="tree-folder" style="--tree-delay: 0s">
-          <span class="tree-icon">📁</span>
-          <span class="tree-name">~/.claude/</span>
-          <ul>
-            <li class="tree-file" style="--tree-delay: 0.1s"><span class="tree-icon">📄</span><span class="tree-name">CLAUDE.md <span class="tree-tag">global context</span></span></li>
-            <li class="tree-folder" style="--tree-delay: 0.15s">
-              <span class="tree-icon">📁</span><span class="tree-name">projects/</span>
-              <ul>
-                <li class="tree-file" style="--tree-delay: 0.2s"><span class="tree-icon">📄</span><span class="tree-name">MEMORY.md <span class="tree-tag">cross-session memory</span></span></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li class="tree-folder" style="--tree-delay: 0.25s">
-          <span class="tree-icon">📁</span>
-          <span class="tree-name">Claude Projects/</span>
-          <ul>
-            <li class="tree-folder" style="--tree-delay: 0.3s">
-              <span class="tree-icon">📁</span><span class="tree-name">Family OS/</span>
-              <ul>
-                <li class="tree-file" style="--tree-delay: 0.35s"><span class="tree-icon">📄</span><span class="tree-name">CLAUDE.md <span class="tree-tag">project context</span></span></li>
-                <li class="tree-file" style="--tree-delay: 0.4s"><span class="tree-icon">📄</span><span class="tree-name">BACKLOG.md <span class="tree-tag">living backlog</span></span></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li class="tree-folder" style="--tree-delay: 0.45s">
-          <span class="tree-icon">📁</span>
-          <span class="tree-name">Obsidian Vault/</span>
-          <ul>
-            <li class="tree-folder" style="--tree-delay: 0.5s">
-              <span class="tree-icon">📁</span><span class="tree-name">100 Projects/</span>
-              <ul>
-                <li class="tree-file" style="--tree-delay: 0.55s"><span class="tree-icon">📄</span><span class="tree-name">GreenMcKimm Family OS.md <span class="tree-tag">session logs</span></span></li>
-                <li class="tree-file" style="--tree-delay: 0.6s"><span class="tree-icon">📄</span><span class="tree-name">The Control Panel.md <span class="tree-tag">this site!</span></span></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-
-    <!-- Continuity flow -->
-    <div class="continuity-flow">
-      <p class="continuity-label">Cross-session continuity</p>
-      <div class="continuity-steps">
-        <div class="con-step">
-          <span class="con-icon">💬</span>
-          <span class="con-text">Claude session</span>
+      <div class="how-to-steps" data-animate>
+        <div class="how-to-step">
+          <div class="step-num">Step 1</div>
+          <div class="step-title">Install Claude Code</div>
+          <div class="step-body">Works on your machine. Takes 20 minutes. Claude Code is the entry point.</div>
+          <a href="https://claude.ai/download" class="btn-step" target="_blank" rel="noopener noreferrer">Get the install guide</a>
         </div>
-        <span class="con-arrow">→</span>
-        <div class="con-step">
-          <span class="con-icon">📝</span>
-          <span class="con-text">Obsidian log</span>
+        <div class="how-to-step">
+          <div class="step-num">Step 2</div>
+          <div class="step-title">Join the channel</div>
+          <div class="step-body">Internal Telstra channel where we share prompts, wins, and setups.</div>
+          <a href="#" class="btn-step">Join the channel</a>
         </div>
-        <span class="con-arrow">→</span>
-        <div class="con-step con-step--close">
-          <span class="con-icon">🔒</span>
-          <span class="con-text">Session ends</span>
-        </div>
-        <span class="con-arrow">→</span>
-        <div class="con-step">
-          <span class="con-icon">🔓</span>
-          <span class="con-text">New IDE / device</span>
-        </div>
-        <span class="con-arrow">→</span>
-        <div class="con-step">
-          <span class="con-icon">🧠</span>
-          <span class="con-text">Claude reads logs</span>
-        </div>
-        <span class="con-arrow">→</span>
-        <div class="con-step con-step--success">
-          <span class="con-icon">✓</span>
-          <span class="con-text">Full context restored</span>
+        <div class="how-to-step">
+          <div class="step-num">Step 3</div>
+          <div class="step-title">Book a 1:1 with Ben</div>
+          <div class="step-body">30 minutes. Pick your first loop. Get it running before the week is out.</div>
+          <a href="https://www.linkedin.com/in/benrgreen/" class="btn-step" target="_blank" rel="noopener noreferrer">Book a time</a>
         </div>
       </div>
+
+      <blockquote class="real-example" data-animate>
+        <p>"This site stays live. Come back to it. Share it. The stack that built it is in Chapter 8."</p>
+      </blockquote>
+    </section>
+
+  </main>
+
+  <footer class="footer-cta" data-animate>
+    <div class="footer-inner">
+      <p class="footer-small">Built with Claude Code &middot; April 2026 &middot; <a href="https://www.linkedin.com/in/benrgreen/" class="footer-link">Ben Green on LinkedIn</a></p>
     </div>
-  </div>
+  </footer>
 
-  <blockquote class="real-example" data-animate>
-    <p>"I started a feature in VS Code, continued it from the terminal on my laptop, and finished it on Claude.ai web. Each time, Claude read the Obsidian session log and knew exactly what had been done and what was left."</p>
-  </blockquote>
-</section>
-
-<section class="section section-alt" id="projects">
-  <div class="section-header" data-animate>
-    <span class="section-number" aria-hidden="true">08</span>
-    <h2>"Here's What I've Actually Built"</h2>
-    <p class="section-intro">These are systems I designed, directed, and shipped. Not side projects I abandoned, but living infrastructure, actively maintained and genuinely used every day to run my family and professional life.</p>
-  </div>
-
-  <div class="projects-grid" data-animate>
-    <div class="project-card project-card--indigo">
-      <div class="project-emoji">🏠</div>
-      <h3 class="project-title">GreenMcKimm Family OS</h3>
-      <p class="project-subtitle">Full-stack household finance + family dashboard</p>
-      <p class="project-desc">Next.js 14, Supabase, Vercel. Real-time budgets, net worth tracking, tax projections, AI-generated financial insights, Google Calendar integration. 40+ features shipped entirely from the terminal.</p>
-      <div class="project-tags">
-        <span class="project-tag">Next.js 14</span>
-        <span class="project-tag">Supabase</span>
-        <span class="project-tag">TypeScript</span>
-        <span class="project-tag">AI Insights</span>
-      </div>
-    </div>
-
-    <div class="project-card project-card--violet">
-      <div class="project-emoji">🔬</div>
-      <h3 class="project-title">muru-D Labs: AI × Telco</h3>
-      <p class="project-subtitle">White paper on AI agents + programmable connectivity</p>
-      <p class="project-desc">50-source NotebookLM research notebook, white paper, and presentation deck on how AI agents will reshape telecommunications via CAMARA APIs and MCP servers.</p>
-      <div class="project-tags">
-        <span class="project-tag">NotebookLM</span>
-        <span class="project-tag">CAMARA APIs</span>
-        <span class="project-tag">MCP</span>
-        <span class="project-tag">Strategy</span>
-      </div>
-    </div>
-
-    <div class="project-card project-card--cyan">
-      <div class="project-emoji">💼</div>
-      <h3 class="project-title">Personal Brand OS</h3>
-      <p class="project-subtitle">LinkedIn content strategy &amp; execution system</p>
-      <p class="project-desc">5-pillar content framework, 90-day playbook, and AI-assisted post drafting, all while navigating Telstra's guardrails as a corporate executive. Consistent, authentic voice at scale.</p>
-      <div class="project-tags">
-        <span class="project-tag">Content Strategy</span>
-        <span class="project-tag">LinkedIn</span>
-        <span class="project-tag">5-Pillar Framework</span>
-      </div>
-    </div>
-
-    <div class="project-card project-card--emerald">
-      <div class="project-emoji">🏡</div>
-      <h3 class="project-title">Property &amp; Household</h3>
-      <p class="project-subtitle">Home admin automation</p>
-      <p class="project-desc">Council info (Manningham City Council), bin night reminders, rates tracking, property decisions, home maintenance schedules. The boring admin of life, fully delegated to Claude.</p>
-      <div class="project-tags">
-        <span class="project-tag">Admin Automation</span>
-        <span class="project-tag">Property</span>
-        <span class="project-tag">Household</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer class="footer-cta" data-animate>
-  <div class="footer-inner">
-    <h2>Want to Try This Yourself?</h2>
-    <p class="footer-desc">Claude Code is available now. Load a CLAUDE.md, connect your tools, and start building from your terminal.</p>
-    <div class="footer-links">
-      <a href="https://claude.ai/download" class="btn footer-btn-primary" target="_blank" rel="noopener noreferrer">Get Claude Code</a>
-      <a href="https://www.linkedin.com/in/benrgreen/" class="btn footer-btn-secondary" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
-    </div>
-    <p class="footer-small">Built entirely with Claude Code &middot; March 2026 &middot; <a href="https://bengreen.dev" class="footer-link">bengreen.dev</a></p>
-  </div>
-</footer>
-
-</main>
   <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
   <script src="mountain.js" defer></script>
   <script src="script.js" defer></script>
+  <script>
+    // Ensemble "show all tools" toggle
+    document.getElementById('show-all-tools')?.addEventListener('click', function() {
+      this.textContent = this.textContent === 'Show all 23 tools' ? 'Show fewer tools' : 'Show all 23 tools';
+    });
+  </script>
 </body>
 </html>
