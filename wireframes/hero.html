@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wireframe · Chapter 1 Hero · Augmented Me</title>
+  <style>
+    :root {
+      --box: #e5e7eb;
+      --box-dark: #d1d5db;
+      --line: #9ca3af;
+      --text: #374151;
+      --accent: #6366f1;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+      margin: 0;
+      padding: 0;
+      background: #fafafa;
+      color: var(--text);
+    }
+    .wf-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 44px;
+      background: #111827;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      z-index: 100;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+    }
+    .wf-bar a {
+      color: #a5b4fc;
+      text-decoration: none;
+      font-size: 0.75rem;
+    }
+    .wf-bar a:hover { color: white; }
+    .wf-label {
+      background: var(--accent);
+      color: white;
+      padding: 0.25rem 0.625rem;
+      border-radius: 4px;
+      font-size: 0.625rem;
+      font-weight: 700;
+    }
+
+    /* =============== NAV =============== */
+    .nav {
+      position: sticky;
+      top: 44px;
+      background: white;
+      border-bottom: 1px dashed var(--line);
+      height: 64px;
+      display: flex;
+      align-items: center;
+      padding: 0 3rem;
+      justify-content: space-between;
+    }
+    .nav-logo { background: var(--box); padding: 0.5rem 1rem; border-radius: 4px; font-size: 0.75rem; }
+    .nav-links { display: flex; gap: 1rem; }
+    .nav-link { background: var(--box); padding: 0.375rem 0.875rem; border-radius: 4px; font-size: 0.6875rem; }
+
+    /* =============== HERO =============== */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      min-height: calc(100vh - 108px);
+      padding: 4rem 5rem;
+      align-items: center;
+      border-bottom: 1px dashed var(--line);
+      position: relative;
+    }
+    .hero-left, .hero-right {
+      position: relative;
+    }
+    .annot {
+      position: absolute;
+      font-size: 0.625rem;
+      color: var(--accent);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .annot.top-left { top: -1rem; left: 0; }
+
+    /* text column */
+    .kicker-box {
+      display: inline-block;
+      background: var(--box);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      margin-bottom: 2rem;
+      font-size: 0.6875rem;
+    }
+    .h1-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .h1-line {
+      background: var(--box-dark);
+      height: 56px;
+      border-radius: 4px;
+      position: relative;
+    }
+    .h1-line:nth-child(1) { width: 70%; }
+    .h1-line:nth-child(2) { width: 60%; }
+    .h1-line:nth-child(3) { width: 85%; }
+    .h1-line::after {
+      content: attr(data-label);
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      padding-left: 1rem;
+      font-size: 0.875rem;
+      color: #6b7280;
+    }
+    .sub-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.375rem;
+      margin-bottom: 2.5rem;
+      max-width: 440px;
+    }
+    .sub-line {
+      background: var(--box);
+      height: 14px;
+      border-radius: 3px;
+    }
+    .sub-line:nth-child(1) { width: 100%; }
+    .sub-line:nth-child(2) { width: 95%; }
+    .sub-line:nth-child(3) { width: 88%; }
+    .sub-line:nth-child(4) { width: 50%; }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+      max-width: 480px;
+    }
+    .stat-box {
+      background: var(--box);
+      border-radius: 6px;
+      padding: 1rem 0.5rem;
+      text-align: center;
+    }
+    .stat-num {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .stat-label {
+      font-size: 0.625rem;
+      color: var(--text);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .scroll-cue {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--box);
+      padding: 0.625rem 1.25rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+    }
+    .scroll-cue .arrow {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-right: 2px solid var(--text);
+      border-bottom: 2px solid var(--text);
+      transform: rotate(45deg);
+      margin-top: -4px;
+      animation: bob 1.6s ease-in-out infinite;
+    }
+    @keyframes bob {
+      0%, 100% { transform: rotate(45deg) translate(0, 0); }
+      50% { transform: rotate(45deg) translate(3px, 3px); }
+    }
+
+    /* visual column */
+    .hero-visual {
+      background: var(--box);
+      border: 2px dashed var(--line);
+      border-radius: 12px;
+      aspect-ratio: 4/5;
+      max-width: 460px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-visual-placeholder {
+      font-size: 3rem;
+    }
+    .hero-visual-caption {
+      font-size: 0.75rem;
+      color: #6b7280;
+      text-align: center;
+      padding: 0 2rem;
+    }
+    .hero-visual-caption strong {
+      display: block;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+    /* scattered tool dots for placeholder */
+    .tool-dot {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      background: white;
+      border-radius: 50%;
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+    }
+    .tool-dot.t1 { top: 12%; left: 14%; }
+    .tool-dot.t2 { top: 18%; right: 10%; }
+    .tool-dot.t3 { top: 48%; left: 6%; }
+    .tool-dot.t4 { bottom: 20%; left: 18%; }
+    .tool-dot.t5 { bottom: 15%; right: 12%; }
+    .tool-dot.t6 { top: 52%; right: 6%; }
+
+    /* =============== ANNOTATIONS LAYER =============== */
+    .side-notes {
+      margin: 0;
+      padding: 2rem 5rem 3rem;
+      background: white;
+      border-top: 1px solid #eee;
+    }
+    .side-notes h2 {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin: 0 0 1rem;
+    }
+    .side-notes ul {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .side-notes li {
+      font-size: 0.8125rem;
+      line-height: 1.5;
+      color: #4b5563;
+      padding-left: 1.25rem;
+      position: relative;
+    }
+    .side-notes li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+    .side-notes li strong {
+      color: var(--text);
+      display: block;
+      margin-bottom: 0.125rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; padding: 3rem 2rem; }
+      .nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .side-notes { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wf-bar">
+    <div>
+      <span class="wf-label">WIREFRAME</span>
+      <span style="margin-left:1rem;">Chapter 1 · Hero</span>
+    </div>
+    <div>
+      <a href="index.html">← All chapters</a>
+    </div>
+  </div>
+
+  <nav class="nav">
+    <div class="nav-logo">Ben Green</div>
+    <div class="nav-links">
+      <div class="nav-link">The Shift</div>
+      <div class="nav-link">Stack</div>
+      <div class="nav-link">Demos</div>
+      <div class="nav-link">Projects</div>
+      <div class="nav-link">Start</div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-left">
+      <div class="annot top-left">① Text column</div>
+      <div class="kicker-box">⚡ AI helps run my life</div>
+      <div class="h1-stack">
+        <div class="h1-line" data-label="Twenty tools."></div>
+        <div class="h1-line" data-label="One workflow."></div>
+        <div class="h1-line" data-label="One very busy life."></div>
+      </div>
+      <div class="sub-stack">
+        <div class="sub-line"></div>
+        <div class="sub-line"></div>
+        <div class="sub-line"></div>
+        <div class="sub-line"></div>
+      </div>
+      <div class="stats-row">
+        <div class="stat-box"><div class="stat-num">23</div><div class="stat-label">Tools</div></div>
+        <div class="stat-box"><div class="stat-num">91</div><div class="stat-label">Skills</div></div>
+        <div class="stat-box"><div class="stat-num">7</div><div class="stat-label">Projects</div></div>
+        <div class="stat-box"><div class="stat-num">30</div><div class="stat-label">Minutes</div></div>
+      </div>
+      <div class="scroll-cue">See how it started <span class="arrow"></span></div>
+    </div>
+
+    <div class="hero-right">
+      <div class="annot top-left">② Illustration column</div>
+      <div class="hero-visual">
+        <div class="tool-dot t1">⚡</div>
+        <div class="tool-dot t2">🎨</div>
+        <div class="tool-dot t3">📓</div>
+        <div class="tool-dot t4">🍌</div>
+        <div class="tool-dot t5">▲</div>
+        <div class="tool-dot t6">🔊</div>
+        <div class="hero-visual-placeholder">🧑‍💻</div>
+        <div class="hero-visual-caption">
+          <strong>Hero illustration placeholder</strong>
+          Ben piggyback on Claude Code, arms around the ensemble.<br>Generated via Nano Banana in Phase 3A.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <aside class="side-notes">
+    <h2>Design intent</h2>
+    <ul>
+      <li><strong>Layout</strong>Two-column split. ~55 / 45. Text left, illustration right. Full viewport height. Break to single column below 900px.</li>
+      <li><strong>Motion</strong>H1 types out word by word. Stats count up when in view. Illustration parallax on mouse move. Scroll cue bobs gently.</li>
+      <li><strong>Background</strong>Solid or subtle gradient. No Three.js mountain (competes with illustration).</li>
+      <li><strong>Kicker</strong>Pill-shaped badge, top-left. Quiet, not shouty.</li>
+      <li><strong>H1</strong>Large display type. Three lines, breaks intentionally set. Each phrase lands on its own line.</li>
+      <li><strong>Stats bar</strong>Inline with the text column, not a separate strip. Four numbers grouped tightly. Count up once.</li>
+      <li><strong>Scroll cue</strong>Pill-shaped button, not floating text. Clicking smooth-scrolls to Chapter 2.</li>
+      <li><strong>Terminal widget</strong>Removed from hero. Moves to Chapter 6 where it belongs (I Direct, They Execute).</li>
+    </ul>
+  </aside>
+</body>
+</html>
